@@ -1,0 +1,19 @@
+.dateInput {
+    border: 1px solid var(--blue);
+    width: max-content;
+    padding: 15px 19px 15px 19px;
+    display: flex;
+    border-radius: 25em;
+}
+
+.dateInput input, .dateInput input::placeholder {
+    color: #000;
+    font: 400 14px/1 var(--font);
+}
+
+.dateInput input {
+    max-width: 140px;
+    display: flex;
+    text-align: center;
+    background: transparent;
+}

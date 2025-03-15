@@ -1,0 +1,11 @@
+.auth {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: calc(100vh - 112.5px);
+}
+
+.img {
+    background-image: url("../../img/160383.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,7 @@
+.charts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 30px;
+    padding: 47px;
+    margin-bottom: 53px;
+}

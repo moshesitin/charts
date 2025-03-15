@@ -1,0 +1,21 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background: #D6EDEC;
+    padding: 11px 73px 13px 62px;
+    position: relative;
+}
+
+.cross {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 13px;
+    right: 12px;
+    display: none;
+}
+
+.active .cross {
+    display: inline-block;
+}

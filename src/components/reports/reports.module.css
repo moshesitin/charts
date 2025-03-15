@@ -1,0 +1,76 @@
+.reports {
+    padding: 0 40px 76px;
+}
+
+.title {
+    color: #3AA6A1;
+    font: 700 32px/1 var(--font);
+    padding: 0 0 21px 13px;
+    border-bottom: 1px solid #3AA6A1;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 38px 0 30px;
+}
+
+.search {
+    width: 163px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 5px 11px 5px 24px;
+    border: 1px solid #A6A6A6;
+    border-radius: 25em;
+}
+
+.input {
+    width: 100%;
+}
+
+.svg {
+    width: 33px;
+    height: 33px;
+}
+
+.download {
+    background: #ECAE36;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    height: 48px;
+    width: 48px;
+    flex-shrink: 0;
+}
+
+.downloadSvg {
+    width: 33px;
+    height: 33px;
+}
+
+.activities {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 44px;
+    justify-content: center;
+}
+
+.pagination li a {
+    font: 500 24px/1 var(--font);
+    color: #B9B9B9;
+}
+
+.pagination li.active a {
+    color: #3AA6A1;
+}

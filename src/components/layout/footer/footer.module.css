@@ -1,0 +1,19 @@
+.footer {
+  background: var(--blue);
+  padding: 11px 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer::before {
+  content: "";
+}
+
+.text {
+  color: #fff;
+  font: 600 20px/1 var(--font);
+}
+.img {
+  max-width: 181px;
+}

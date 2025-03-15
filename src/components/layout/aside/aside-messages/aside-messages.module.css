@@ -1,0 +1,22 @@
+.buttonContainer {
+  position: relative;
+  padding: 45px 0;
+}
+
+.messages {
+  margin-top: 36px;
+  width: 100%;
+  padding: 0 19px;
+}
+
+.title {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 20px;
+  color: #fff;
+  font: 700 24px/1 var(--font);
+}
+
+.container {
+  height: 880px;
+}

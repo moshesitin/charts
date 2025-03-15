@@ -1,0 +1,44 @@
+.top {
+    display: grid;
+    grid-template-columns: 170px minmax(0, 1fr) 527px;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+}
+
+.title {
+    font: 700 36px/1 var(--font);
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+    gap: 7px;
+    max-width: 948px;
+}
+
+.filter {
+    overflow: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+}
+
+.filterText {
+    font-size: 12px;
+    line-height: 1;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.buttonText {
+    font: 400 17px/1 var(--font);
+}
+
+.svg {
+    width: 17px;
+    height: 17px;
+}

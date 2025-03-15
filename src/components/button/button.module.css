@@ -1,0 +1,22 @@
+.button {
+  padding: 15px 19px;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 11em;
+}
+
+.grey {
+  border-color: #B9B9B9;
+}
+
+.blue {
+  border-color: #3AA6A1;
+}
+
+.fullBlue {
+  background: #3AA6A1;
+  border-color: #3AA6A1;
+  color: #fff;
+}

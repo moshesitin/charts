@@ -1,0 +1,25 @@
+.aside {
+  background: var(--blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  overflow: auto;
+  scrollbar-width: none;
+  width: 120px;
+}
+
+.aside.active {
+  width: 405px;
+}
+
+.messages {
+  display: none;
+}
+
+.active .messages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}

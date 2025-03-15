@@ -1,0 +1,52 @@
+.label {
+    width: 100%;
+}
+
+.title {
+    margin: 0 0 8px 35px;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.container {
+    border: 1px solid #3AA6A1;
+    border-radius: 25em;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 65px;
+    padding: 0 20px;
+    gap: 5px;
+}
+
+.input {
+    width: 100%;
+    font-size: 20px;
+}
+
+.eye {
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.eye::before {
+    content: "";
+    display: inline-block;
+    height: 2px;
+    background: #7F879E;
+    position: absolute;
+    width: calc(100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: width .1s ease, left .1s ease, top .1s ease;
+}
+
+.eye.active::before {
+    top: 16%;
+    left: 16%;
+    width: 0;
+}

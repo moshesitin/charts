@@ -1,0 +1,98 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.menuBtn {
+  padding: 19.3px 0;
+}
+
+.active .menuBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.menuBtnText {
+  color: #fff;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
+  display: none;
+}
+
+.active .menuBtnText {
+  display: inline-block;
+}
+
+.linkContainer {
+  width: 100%;
+  border-top: 1px solid #fff;
+}
+
+.menuItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 16px 4px;
+}
+
+.menuInMenu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 4px;
+  display: flex;
+  justify-content: center;
+}
+
+.menuInMenu .menuItem {
+  padding: 0;
+}
+
+.arrow {
+  display: none;
+  width: 35px;
+  height: 35px;
+}
+
+.active .arrow {
+  display: inline-block;
+}
+
+.active .menuItem {
+  flex-direction: row;
+  padding: 16px 40px 16px 23px;
+  gap: 15px;
+}
+
+.active .menuInMenu .menuItem {
+  padding: 0;
+}
+
+.active .menuInMenu {
+  padding: 16px 40px 16px 23px;
+  justify-content: space-between;
+}
+
+.svg {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkText {
+  font-size: 14px;
+  line-height: 1;
+  color: #fff;
+}
+
+.active .linkText {
+  font-weight: 600;
+  font-size: 20px;
+}

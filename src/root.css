@@ -1,0 +1,9 @@
+:root {
+  --container: 0 77px 0 47px;
+  --font: "Rubik", sans-serif;
+  --blue: #3AA6A1;
+}
+
+body * {
+  font: 400 16px/1 var(--font);
+}

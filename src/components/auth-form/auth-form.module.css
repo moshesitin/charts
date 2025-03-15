@@ -1,0 +1,123 @@
+.form {
+    margin-top: 109px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formContainer {
+    max-width: 520px;
+    width: 100%;
+}
+
+.title {
+    font: 500 24px/1 var(--font);
+    padding-bottom: 13px;
+    border-bottom: 1px solid #3AA6A1;
+    width: 100%;
+    margin-bottom: 37px;
+}
+
+.inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.remember {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+    margin-bottom: 46px;
+}
+
+.sign {
+    font-size: 20px;
+    background: #fff;
+    border-radius: 25em;
+    border: 1px solid #3AA6A1;
+    max-width: 217px;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.or {
+    font: 500 24px/1 var(--font);
+    position: relative;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.or::before, .or::after {
+    content: "";
+    display: inline-block;
+    width: 100vw;
+    height: 1px;
+    background: #3AA6A1;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.googleBtn {
+    background: #fff;
+    border-radius: 25em;
+    border: 1px solid #3AA6A1;
+    max-width: 217px;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+}
+
+.or::before {
+    right: calc(50% + 30px);
+}
+
+.or::after {
+    left: calc(50% + 30px);
+}
+
+.google {
+    font: 500 20px/1 var(--font);
+    color: #7C7C7C;
+}
+
+.img {
+    width: 45px;
+}
+
+.no {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.noText {
+    font-size: 20px;
+}
+
+.reg {
+    font: 600 20px/1 var(--font);
+    color: #3AA6A1;
+    text-decoration: underline;
+}
