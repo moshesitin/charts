@@ -2,6 +2,7 @@
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+  width: 70px;
 }
 
 .ham1 path {
@@ -29,4 +30,10 @@
 
 .ham1.active .bottom {
   stroke-dashoffset: -138px;
+}
+
+@media (max-width: 576px) {
+  .ham1 {
+    width: 50px;
+  }
 }

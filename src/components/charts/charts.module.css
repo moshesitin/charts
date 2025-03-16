@@ -5,3 +5,15 @@
     padding: 47px;
     margin-bottom: 53px;
 }
+
+@media (max-width: 1480px) {
+    .charts {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 991px) {
+    .charts {
+        padding: 20px;
+    }
+}

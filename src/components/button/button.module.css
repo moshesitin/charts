@@ -20,3 +20,16 @@
   border-color: #3AA6A1;
   color: #fff;
 }
+
+@media (max-width: 1385px) {
+  .button {
+    padding: 10px 14px;
+  }
+}
+
+@media (max-width: 991px) {
+  .button {
+    width: 100%;
+    justify-content: center;
+  }
+}

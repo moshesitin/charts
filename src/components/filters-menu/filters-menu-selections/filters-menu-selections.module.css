@@ -1,5 +1,24 @@
 .selections {
     display: grid;
-    grid-template-columns:repeat(7, 1fr);
+    grid-template-columns: repeat(7, 1fr);
+    justify-content: space-between;
     gap: 32px;
+}
+
+@media (max-width: 1460px) {
+    .selections {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 1320px) {
+    .selections {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 991px) {
+    .selections {
+        grid-template-columns: 1fr;
+    }
 }

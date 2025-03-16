@@ -1,19 +1,20 @@
-export const BackArrow = () => (
+import styles from "./next-arrow.module.css";
+
+export const NextArrow = () => (
     <svg
-        width="60px"
-        height="60px"
+        className={styles.svg}
         viewBox="0 0 60 60"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
     >
-        <g clipPath="url(#clip0_142_2103)">
+        <g clipPath="url(#clip0_142_2102)">
             <path
-                d="M35 15L38.525 18.525L27.075 30L38.525 41.475L35 45L20 30L35 15Z"
+                d="M21.475 18.525L25 15L40 30L25 45L21.475 41.475L32.925 30L21.475 18.525Z"
                 fill="#7C7C7C"
             />
         </g>
         <defs>
-            <clipPath id="clip0_142_2103">
+            <clipPath id="clip0_142_2102">
                 <rect
                     width="60px"
                     height="60px"

@@ -8,8 +8,8 @@ import { saveAs } from "file-saver";
 import { Select } from "../select/select";
 import ReactPaginate from "react-paginate";
 import { Arrow } from "../../svg/arrow";
-import { BackArrow } from "../../svg/back-arrow";
-import { NextArrow } from "../../svg/next-arrow";
+import { BackArrow } from "../../svg/back-arrow/back-arrow";
+import { NextArrow } from "../../svg/next-arrow/next-arrow";
 
 const headData = ["Данные 1", "Данные 2", "Данные 3", "Данные 4", "Данные 5"];
 const data = [["{Data}"]];

@@ -19,3 +19,29 @@
 .active .cross {
     display: inline-block;
 }
+
+@media (max-width: 1385px) {
+    .menu {
+        gap: 20px;
+        padding: 10px 50px 10px 20px;
+    }
+
+    .cross {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 991px) {
+    .menu {
+        gap: 20px;
+        padding: 10px 20px 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .cross {
+        width: 24px;
+        height: 24px;
+    }
+}

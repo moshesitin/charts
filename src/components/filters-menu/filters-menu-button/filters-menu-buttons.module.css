@@ -3,3 +3,9 @@
     justify-content: end;
     gap: 10px;
 }
+
+@media (max-width: 991px) {
+    .container {
+        flex-direction: column;
+    }
+}

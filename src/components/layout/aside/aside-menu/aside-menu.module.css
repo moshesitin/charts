@@ -84,6 +84,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .linkText {
@@ -95,4 +96,24 @@
 .active .linkText {
   font-weight: 600;
   font-size: 20px;
+}
+
+@media (max-width: 576px) {
+  .linkText {
+    display: none;
+  }
+
+  .svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .menuBtnText {
+    font-size: 18px;
+  }
+
+  .active .linkText {
+    display: inline-block;
+    font-size: 14px;
+  }
 }

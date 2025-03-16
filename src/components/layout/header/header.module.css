@@ -63,3 +63,69 @@
   right: 0;
   transform: translate(0, -50%);
 }
+
+@media (max-width: 1480px) {
+  .header {
+    padding: 19px 20px 15px;
+  }
+
+  .btnText, .user, .status {
+    font-size: 20px;
+  }
+
+  .status {
+    padding-right: 24px;
+  }
+
+  .status::before {
+    width: 20px;
+    height: 20px;
+  }
+
+  .svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .home {
+    max-width: 200px;
+  }
+
+  .active {
+    gap: 15px;
+  }
+
+  .user::before {
+    left: calc(100% + 7.5px);
+  }
+
+  .btnText, .user, .status {
+    font-size: 16px;
+  }
+
+  .svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .status {
+    padding-right: 20px;
+  }
+
+  .status::before {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    justify-content: center;
+  }
+
+  .active {
+    display: none;
+  }
+}

@@ -14,6 +14,22 @@
   color: #fff;
   font: 600 20px/1 var(--font);
 }
+
 .img {
   max-width: 181px;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .footer::before {
+    display: none;
+  }
+
+  .img {
+    display: none;
+  }
 }

@@ -1,9 +1,11 @@
 .dateInput {
     border: 1px solid var(--blue);
     width: max-content;
-    padding: 15px 19px 15px 19px;
+    padding: 15px 19px;
     display: flex;
     border-radius: 25em;
+    justify-content: center;
+
 }
 
 .dateInput input, .dateInput input::placeholder {
@@ -16,4 +18,16 @@
     display: flex;
     text-align: center;
     background: transparent;
+}
+
+@media (max-width: 1385px) {
+    .dateInput {
+        padding: 10px 14px;
+    }
+}
+
+@media (max-width: 991px) {
+    .dateInput {
+        width: 100%;
+    }
 }

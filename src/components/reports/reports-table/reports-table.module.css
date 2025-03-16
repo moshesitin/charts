@@ -40,3 +40,38 @@
     min-width: 330px;
     width: 100%;
 }
+
+@media (max-width: 1200px) {
+    .row {
+        height: 50px;
+    }
+
+    .item, .headItem {
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 991px) {
+    .row {
+        height: 35px;
+    }
+
+    .item, .headItem {
+        min-width: 160px;
+    }
+
+    .headItem {
+        font-size: 20px;
+    }
+
+    .item {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .headItem {
+        padding: 8px 2px;
+        font-size: 18px;
+    }
+}

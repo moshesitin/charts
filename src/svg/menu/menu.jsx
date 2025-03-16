@@ -5,7 +5,6 @@ export const Menu = ({ isActive }) => {
   return (
     <svg
       viewBox="0 0 100 100"
-      width="70px"
       className={classNames(styles.ham1, { [styles.active]: isActive })}
     >
       <path
