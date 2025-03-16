@@ -75,13 +75,37 @@
     color: #3AA6A1;
 }
 
-@media (max-width: 991px) {
+@supports (padding-inline-start: 0) {
     .reports {
-        padding: 0 20px 20px;
+        padding-inline: 40px;
+        padding-block: 0 76px;
+    }
+
+    .title {
+        padding-inline-start: 13px;
+        padding-inline-end: 0;
+        padding-block: 0 21px;
     }
 
     .head {
-        padding: 20px 0;
+        padding-block: 38px 30px;
+    }
+
+    .search {
+        padding-inline-start: 24px;
+        padding-inline-end: 11px;
+        padding-block: 5px;
+    }
+}
+
+@media (max-width: 991px) {
+    .reports {
+        padding-inline: 20px;
+        padding-block: 0 20px;
+    }
+
+    .head {
+        padding-block: 20px;
     }
 }
 

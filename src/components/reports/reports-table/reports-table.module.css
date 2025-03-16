@@ -41,6 +41,13 @@
     width: 100%;
 }
 
+@supports (padding-inline-start: 0) {
+    .headItem {
+        padding-inline: 12px;
+        padding-block: 19px;
+    }
+}
+
 @media (max-width: 1200px) {
     .row {
         height: 50px;
@@ -71,7 +78,8 @@
 
 @media (max-width: 576px) {
     .headItem {
-        padding: 8px 2px;
+        padding-inline: 2px;
+        padding-block: 8px;
         font-size: 18px;
     }
 }

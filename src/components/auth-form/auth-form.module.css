@@ -1,9 +1,9 @@
 .form {
-    margin-top: 109px;
+    margin-block-start: 109px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 20px;
+    padding-inline: 20px;
 }
 
 .formContainer {
@@ -13,10 +13,10 @@
 
 .title {
     font: 500 24px/1 var(--font);
-    padding-bottom: 13px;
+    padding-block-end: 13px;
     border-bottom: 1px solid #3AA6A1;
     width: 100%;
-    margin-bottom: 37px;
+    margin-block-end: 37px;
 }
 
 .inputs {
@@ -24,7 +24,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 22px;
+    margin-block-end: 22px;
 }
 
 .remember {
@@ -32,7 +32,7 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    margin-block-end: 40px;
 }
 
 .buttons {
@@ -41,7 +41,7 @@
     align-items: center;
     gap: 25px;
     width: 100%;
-    margin-bottom: 46px;
+    margin-block-end: 46px;
 }
 
 .sign {
@@ -90,11 +90,11 @@
 }
 
 .or::before {
-    right: calc(50% + 30px);
+    inset-inline-end: calc(50% + 30px);
 }
 
 .or::after {
-    left: calc(50% + 30px);
+    inset-inline-start: calc(50% + 30px);
 }
 
 .google {

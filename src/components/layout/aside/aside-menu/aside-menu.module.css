@@ -45,7 +45,6 @@
   align-items: center;
   gap: 10px;
   padding: 16px 4px;
-  display: flex;
   justify-content: center;
 }
 
@@ -96,6 +95,34 @@
 .active .linkText {
   font-weight: 600;
   font-size: 20px;
+}
+
+@supports (padding-inline-start: 0) {
+  .menuBtn {
+    padding-block: 19.3px;
+  }
+
+  .menuItem {
+    padding-inline: 4px;
+    padding-block: 16px;
+  }
+
+  .menuInMenu {
+    padding-inline: 4px;
+    padding-block: 16px;
+  }
+
+  .active .menuItem {
+    padding-inline-start: 23px;
+    padding-inline-end: 40px;
+    padding-block: 16px;
+  }
+
+  .active .menuInMenu {
+    padding-inline-start: 23px;
+    padding-inline-end: 40px;
+    padding-block: 16px;
+  }
 }
 
 @media (max-width: 576px) {

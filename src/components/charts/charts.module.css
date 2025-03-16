@@ -6,6 +6,13 @@
     margin-bottom: 53px;
 }
 
+@supports (padding-inline-start: 0) {
+    .charts {
+        padding-inline: 47px;
+        padding-block: 47px;
+    }
+}
+
 @media (max-width: 1480px) {
     .charts {
         grid-template-columns: minmax(0, 1fr);
@@ -14,6 +21,7 @@
 
 @media (max-width: 991px) {
     .charts {
-        padding: 20px;
+        padding-inline: 20px;
+        padding-block: 20px;
     }
 }

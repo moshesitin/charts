@@ -2,8 +2,7 @@
   width: 48px;
   height: 48px;
   position: absolute;
-  left: 50%;
-
+  inset-inline-start: 50%;
 }
 
 .next {
@@ -13,6 +12,5 @@
 
 .prev {
   transform: translate(-50%, 0) rotate(180deg);
-  top: none;
   top: 0;
 }

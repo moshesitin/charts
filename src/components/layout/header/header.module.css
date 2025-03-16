@@ -41,14 +41,14 @@
   width: 1px;
   height: 84px;
   position: absolute;
-  left: calc(100% + 15px);
+  inset-inline-start: calc(100% + 15px);
   top: 50%;
   transform: translate(0, -50%);
   background: #A6A6A6;
 }
 
 .status {
-  padding-right: 34px;
+  padding-inline-end: 34px;
 }
 
 .status::before {
@@ -60,13 +60,22 @@
   background: #63AE40;
   position: absolute;
   top: 50%;
-  right: 0;
+  inset-inline-end: 0;
   transform: translate(0, -50%);
+}
+
+@supports (padding-inline-start: 0) {
+  .header {
+    padding-inline-start: 40px;
+    padding-inline-end: 78px;
+    padding-block: 19px 15px;
+  }
 }
 
 @media (max-width: 1480px) {
   .header {
-    padding: 19px 20px 15px;
+    padding-inline: 20px;
+    padding-block: 19px 15px;
   }
 
   .btnText, .user, .status {
@@ -74,7 +83,7 @@
   }
 
   .status {
-    padding-right: 24px;
+    padding-inline-end: 24px;
   }
 
   .status::before {
@@ -98,7 +107,7 @@
   }
 
   .user::before {
-    left: calc(100% + 7.5px);
+    inset-inline-start: calc(100% + 7.5px);
   }
 
   .btnText, .user, .status {
@@ -111,7 +120,7 @@
   }
 
   .status {
-    padding-right: 20px;
+    padding-inline-end: 20px;
   }
 
   .status::before {

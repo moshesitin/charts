@@ -20,3 +20,13 @@
 .container {
   height: 880px;
 }
+
+@supports (padding-inline-start: 0) {
+  .buttonContainer {
+    padding-block: 45px;
+  }
+
+  .messages {
+    padding-inline: 19px;
+  }
+}

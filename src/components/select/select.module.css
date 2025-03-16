@@ -48,7 +48,7 @@
     position: absolute;
     width: 100%;
     top: calc(100% + 3px);
-    left: 0;
+    inset-inline-start: 0;
     border: 1px solid #3AA6A1;
     border-radius: 20px;
     background: #fff;
@@ -109,14 +109,57 @@
     font: 500 16px/1 var(--font);
 }
 
+@supports (padding-inline-start: 0) {
+    .button {
+        padding-inline-start: 24px;
+        padding-inline-end: 14px;
+        padding-block: 14px 11px;
+    }
+
+    .small {
+        padding-inline-start: 15px;
+        padding-inline-end: 9px;
+        padding-block: 5px;
+    }
+
+    .head {
+        padding-inline: 14px;
+        padding-block: 11px;
+    }
+
+    .customInput {
+        margin-inline: 17px;
+        margin-block: 13px;
+        padding-inline-start: 28px;
+        padding-inline-end: 14px;
+        padding-block: 4px 3px;
+    }
+
+    .checkboxContainer {
+        padding-inline-start: 17px;
+        padding-inline-end: 0;
+        padding-block: 8px;
+    }
+
+    .submitContainer {
+        padding-inline: 10px;
+        padding-block: 6px;
+        justify-content: flex-end;
+    }
+}
+
 @media (max-width: 1750px) {
     .customInput {
-        padding: 4px 4px 4px 14px;
-        margin: 9px 13px;
+        padding-inline-start: 14px;
+        padding-inline-end: 4px;
+        padding-block: 4px;
+        margin-inline: 13px;
+        margin-block: 9px;
     }
 
     .button {
-        padding: 7px 10px;
+        padding-inline: 10px;
+        padding-block: 7px;
     }
 }
 

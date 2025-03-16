@@ -40,15 +40,32 @@
     position: absolute;
     width: calc(100%);
     top: 50%;
-    left: 50%;
+    inset-inline-start: 50%;
     transform: translate(-50%, -50%) rotate(45deg);
-    transition: width .1s ease, left .1s ease, top .1s ease;
+    transition: width .1s ease, inset-inline-start .1s ease, top .1s ease;
 }
 
 .eye.active::before {
     top: 16%;
-    left: 16%;
+    inset-inline-start: 16%;
     width: 0;
+}
+
+@supports (padding-inline-start: 0) {
+    .title {
+        margin-inline-start: 35px;
+        margin-inline-end: 0;
+        margin-block: 0 8px;
+    }
+
+    .container {
+        padding-inline: 20px;
+        padding-block: 0;
+    }
+
+    .eye::before {
+        left: unset;
+    }
 }
 
 @media (max-width: 576px) {
@@ -59,6 +76,7 @@
     .container {
         height: 40px;
     }
+
     .input {
         font-size: 14px;
     }
