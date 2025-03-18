@@ -7,6 +7,7 @@
   overflow: auto;
   scrollbar-width: none;
   width: 120px;
+  transition: width .1s ease;
 }
 
 .aside.active {

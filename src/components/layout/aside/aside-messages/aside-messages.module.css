@@ -18,7 +18,7 @@
 }
 
 .container {
-  height: 880px;
+  height: 800px;
 }
 
 @supports (padding-inline-start: 0) {

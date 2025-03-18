@@ -5,6 +5,12 @@
     background: #D6EDEC;
     padding: 11px 73px 13px 62px;
     position: relative;
+    min-height: 73.5px;
+    transition: height .1s ease;
+}
+
+.active.menu {
+    height: 253.5px;
 }
 
 .cross {
@@ -20,6 +26,17 @@
     display: inline-block;
 }
 
+@media (max-width: 1750px) {
+    .active.menu {
+        height: 242.5px;
+    }
+}
+
+@media (max-width: 1640px) {
+    .active.menu {
+        height: 232.5px;
+    }
+}
 
 @media (max-width: 1385px) {
     .menu {
@@ -27,6 +44,11 @@
         padding-inline-start: 20px;
         padding-inline-end: 50px;
         padding-block: 10px;
+        height: 59.5px;
+    }
+
+    .active.menu {
+        height: 188.5px;
     }
 
     .cross {
@@ -35,15 +57,38 @@
     }
 }
 
+@media (max-width: 1320px) {
+    .active.menu {
+        height: 302.5px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .active.menu {
+        height: 322.5px;
+    }
+}
+
 @media (max-width: 991px) {
+    .active.menu {
+        height: 729.5px;
+    }
+}
+
+@media (max-width: 630px) {
     .menu {
         gap: 20px;
         padding-inline: 20px;
         padding-block: 10px;
+        height: 215.5px;
     }
 }
 
 @media (max-width: 576px) {
+    .active.menu {
+        height: 719.5px;
+    }
+
     .cross {
         width: 24px;
         height: 24px;

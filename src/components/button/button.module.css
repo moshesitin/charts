@@ -35,3 +35,10 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 921px) {
+  .button {
+    padding-block: 10px;
+    padding-inline: 10px;
+  }
+}

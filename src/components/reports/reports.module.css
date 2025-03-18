@@ -109,7 +109,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 921px) {
     .head {
         flex-direction: column;
         align-items: start;
