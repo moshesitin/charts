@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Layout } from "./components/layout/layout";
 import { DashboardPage } from "./pages/dashboard-page/dashboard-page";
-import { FiltersContextProvider } from "./components/contexts/filters-context/filters-context";
+import { FiltersProvider } from "./contexts/filters-context";
 import { AuthLayout } from "./components/layout/auth-layout";
 import { AuthorizationPage } from "./pages/authorization-page/authorization-page";
 
@@ -20,8 +20,8 @@ export const App = () => {
     ]);
 
     return (
-        <FiltersContextProvider>
+        <FiltersProvider>
             <RouterProvider router={router} />
-        </FiltersContextProvider>
+        </FiltersProvider>
     );
 };

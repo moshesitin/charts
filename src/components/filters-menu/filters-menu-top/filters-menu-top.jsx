@@ -4,7 +4,7 @@ import { FilterSvg } from "../../../svg/filter-svg";
 import { Cross } from "../../../svg/cross";
 import { Pen } from "../../../svg/pen";
 import styles from "./filters-menu-top.module.css";
-import { useFilters } from "../../contexts/filters-context/use-filters";
+import { useFilters } from "../../../contexts/filters-context";
 
 export const FiltersMenuTop = ({ title, handlerActive }) => {
     return (
@@ -37,7 +37,7 @@ const Filters = () => {
 };
 
 const Filter = ({ name }) => {
-    const { filters, deleteFilter } = useFilters();
+    const { filters, selectedFilters, handleFilterChange } = useFilters();
     let filterItems = filters[name];
 
     if (!filterItems) {
@@ -53,7 +53,7 @@ const Filter = ({ name }) => {
                 {filterItems}
                 <button
                     onClick={() => {
-                        deleteFilter(name);
+                        handleFilterChange({ target: { id: name, value: '' } });
                     }}
                     className={styles.cross}
                 >

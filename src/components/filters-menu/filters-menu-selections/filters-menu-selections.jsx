@@ -1,51 +1,39 @@
-import { useFilters } from "../../contexts/filters-context/use-filters";
-import { Select } from "../../select/select";
+import { useFilters } from "../../../contexts/filters-context";
 import styles from "./filters-menu-selections.module.css";
 
-const selectData = [
-    {
-        name: "Select 1",
-        items: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"],
-    },
-    {
-        name: "Select 2",
-        items: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"],
-    },
-    {
-        name: "Select 3",
-        items: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"],
-    },
-    {
-        name: "Select 4",
-        items: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"],
-    },
-    {
-        name: "Select 5",
-        items: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"],
-    },
-    {
-        name: "Select 6",
-        items: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"],
-    },
-    {
-        name: "Select 7",
-        items: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"],
-    },
-];
-
 export const FiltersMenuSelections = () => {
-    const { toggleFilter, filters } = useFilters();
+    const { filters, selectedFilters, handleFilterChange, error, isLoading } = useFilters();
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <div className={styles.selections}>
-            {selectData.map((e, ind) => (
-                <Select
-                    onClick={toggleFilter}
-                    key={ind}
-                    name={e.name}
-                    items={e.items}
-                    activeFilters={filters[e.name] || new Set()}
-                />
+            {[
+                { id: "Agency", label: "מפעיל" },
+                { id: "Cluster", label: "אשכול (אזורים)" },
+                { id: "SubCluster", label: "תת אשכול" },
+                { id: "City", label: "עיר" },
+                { id: "RouteNumber", label: "קו" },
+                { id: "LineType", label: "סוג קו" },
+                { id: "linegroup", label: "קבוצת קווים" }
+            ].map(({ id, label }) => (
+                <div key={id} className={styles.selection}>
+                    <label htmlFor={id}>{label}:</label>
+                    <select id={id} value={selectedFilters[id]} onChange={handleFilterChange}>
+                        <option value="">Выберите</option>
+                        {filters[id]?.map((option, index) => (
+                            <option key={`${id}-${index}`} value={option}>
+                                {option}
+                            </option>
+                        ))}
+                    </select>
+                </div>
             ))}
         </div>
     );
