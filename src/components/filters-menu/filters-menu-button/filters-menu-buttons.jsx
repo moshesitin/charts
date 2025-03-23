@@ -8,10 +8,10 @@ export const FiltersMenuButtons = ({ handlerActive }) => {
     return (
         <div className={styles.container}>
             <Button onClick={clearFilters} color={"blue"}>
-                Сбросить
+            נקה בחירה
             </Button>
             <Button onClick={handlerActive} color={"fullBlue"}>
-                Фильтр
+            סנן
             </Button>
         </div>
     );

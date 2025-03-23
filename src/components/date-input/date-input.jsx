@@ -22,7 +22,7 @@ export const DateInput = () => {
                 }}
                 locale="he"
                 dateFormat="dd/MM/yy"
-                placeholderText="Выберите Дату"
+                placeholderText="בחר תאריך"
             />
         </div>
     );

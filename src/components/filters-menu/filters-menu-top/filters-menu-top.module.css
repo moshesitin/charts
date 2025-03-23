@@ -13,8 +13,8 @@
 .filters {
     display: grid;
     grid-template-columns: repeat(7, auto);
-    gap: 7px;
-    max-width: 948px;
+    gap: 10px;
+    max-width: 100%;
 }
 
 .filter {
@@ -49,7 +49,7 @@
     display: flex;
     align-items: center;
     gap: 24px;
-    justify-content: space-between;
+    justify-content: end;
 }
 
 .buttonText {
@@ -100,7 +100,7 @@
 
 @media (max-width: 630px) {
     .top {
-        grid-template-columns: 1fr;
+        display: flex;
     }
 
     .filters {
@@ -111,8 +111,12 @@
     .buttons {
         max-width: none;
         width: 100%;
-        justify-content: space-between;
-        flex-direction: column;
+        justify-content: end;
+        /* flex-direction: column; */ 
+    }
+
+    .buttonText {
+        display: none;
     }
 
     .buttonText {
