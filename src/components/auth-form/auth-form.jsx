@@ -18,17 +18,17 @@ export const AuthForm = () => {
     return (
         <form className={styles.form}>
             <div className={styles.formContainer}>
-                <h3 className={styles.title}>Войти</h3>
+                <h3 className={styles.title}>התחברות</h3>
                 <div className={styles.inputs}>
                     <div className={styles.input}>
                         <Input
-                            title={"Имя пользователя или имейл"}
+                            title={"שם משתמש או כתובת אימייל"}
                             type={"email"}
                         />
                     </div>
                     <div className={styles.input}>
                         <Input
-                            title={"Пароль"}
+                            title={"סיסמא"}
                             type={"password"}
                             isSecure={true}
                         />
@@ -39,27 +39,27 @@ export const AuthForm = () => {
                         checkboxClick={checkboxClick}
                         name={"remember"}
                         value={"remember"}
-                        item={"Запомнить меня"}
+                        item={"זכור אותי"}
                         activeFilters={remember}
                     />
                     <a href="#" className={styles.text}>
-                        Забыли пароль?
+                    שכחתי סיסמא?
                     </a>
                 </div>
                 <div className={styles.buttons}>
                     <button type="submit" className={styles.sign}>
-                        Войти
+                    התחבר
                     </button>
-                    <p className={styles.or}>или</p>
+                    <p className={styles.or}>או</p>
                     <button className={styles.googleBtn}>
                         <span className={styles.google}>Google</span>
                         <img className={styles.img} src={google} alt="google" />
                     </button>
                 </div>
                 <div className={styles.no}>
-                    <span className={styles.noText}>У вас нет аккаунта?</span>
+                    <span className={styles.noText}>אין לכם חשבון? </span>
                     <a href="#" className={styles.reg}>
-                        Зарегистрироваться
+                    הרשמו
                     </a>
                 </div>
             </div>

@@ -1,9 +1,14 @@
+/* * {
+    direction: rtl;
+} */
+
 .form {
     margin-block-start: 109px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-inline: 20px;
+    justify-content: center;
 }
 
 .formContainer {
@@ -109,8 +114,9 @@
 .no {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
     width: 100%;
+    gap: 5px;
 }
 
 .noText {
@@ -123,7 +129,7 @@
     text-decoration: underline;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 921px) {
     .title {
         font-size: 18px;
     }
@@ -140,6 +146,10 @@
 
     .img {
         width: 25px;
+    }
+
+    .no {
+        justify-content: center;
     }
 
     .noText, .reg {

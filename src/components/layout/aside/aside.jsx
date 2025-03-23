@@ -8,74 +8,74 @@ const M_DATA = [
   {
     id: 0,
     title: "18:22 20/12/24 -  20:22 21/12/24",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    text: "לורם איפסום דולור סיט אמט הבקיץ לכנוץ וואל מונפרד אגת שנרא וק. קלאצי צופעט צוט יבש, סיט יבש, - בורק? לכנו למרקוח .",
   },
   {
     id: 1,
     title: "18:22 20/12/24 -  20:22 21/12/24",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    text: "לורם איפסום דולור סיט אמט הבקיץ לכנוץ וואל מונפרד אגת שנרא וק. קלאצי צופעט צוט יבש, סיט יבש, - בורק? לכנו למרקוח .",
   },
   {
     id: 2,
     title: "18:22 20/12/24 -  20:22 21/12/24",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    text: "לורם איפסום דולור סיט אמט הבקיץ לכנוץ וואל מונפרד אגת שנרא וק. קלאצי צופעט צוט יבש, סיט יבש, - בורק? לכנו למרקוח .",
   },
   {
     id: 3,
     title: "18:22 20/12/24 -  20:22 21/12/24",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    text: "לורם איפסום דולור סיט אמט הבקיץ לכנוץ וואל מונפרד אגת שנרא וק. קלאצי צופעט צוט יבש, סיט יבש, - בורק? לכנו למרקוח .",
   },
   {
     id: 4,
     title: "18:22 20/12/24 -  20:22 21/12/24",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    text: "לורם איפסום דולור סיט אמט הבקיץ לכנוץ וואל מונפרד אגת שנרא וק. קלאצי צופעט צוט יבש, סיט יבש, - בורק? לכנו למרקוח .",
   },
   {
     id: 5,
     title: "18:22 20/12/24 -  20:22 21/12/24",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    text: "לורם איפסום דולור סיט אמט הבקיץ לכנוץ וואל מונפרד אגת שנרא וק. קלאצי צופעט צוט יבש, סיט יבש, - בורק? לכנו למרקוח .",
   },
   {
     id: 6,
     title: "18:22 20/12/24 -  20:22 21/12/24",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    text: "לורם איפסום דולור סיט אמט הבקיץ לכנוץ וואל מונפרד אגת שנרא וק. קלאצי צופעט צוט יבש, סיט יבש, - בורק? לכנו למרקוח .",
   },
 ];
 const W_DATA = [
   {
     id: 0,
     title: "18:22 20.12.24",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    text: "לורם איפסום דולור סיט אמט הבקיץ לכנוץ וואל מונפרד אגת שנרא וק. קלאצי צופעט צוט יבש, סיט יבש, - בורק? לכנו למרקוח .",
   },
   {
     id: 1,
     title: "18:22 20.12.24",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    text: "לורם איפסום דולור סיט אמט הבקיץ לכנוץ וואל מונפרד אגת שנרא וק. קלאצי צופעט צוט יבש, סיט יבש, - בורק? לכנו למרקוח .",
   },
   {
     id: 2,
     title: "18:22 20.12.24",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    text: "לורם איפסום דולור סיט אמט הבקיץ לכנוץ וואל מונפרד אגת שנרא וק. קלאצי צופעט צוט יבש, סיט יבש, - בורק? לכנו למרקוח .",
   },
   {
     id: 3,
     title: "18:22 20.12.24",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    text: "לורם איפסום דולור סיט אמט הבקיץ לכנוץ וואל מונפרד אגת שנרא וק. קלאצי צופעט צוט יבש, סיט יבש, - בורק? לכנו למרקוח .",
   },
   {
     id: 4,
     title: "18:22 20.12.24",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    text: "לורם איפסום דולור סיט אמט הבקיץ לכנוץ וואל מונפרד אגת שנרא וק. קלאצי צופעט צוט יבש, סיט יבש, - בורק? לכנו למרקוח .",
   },
   {
     id: 5,
     title: "18:22 20.12.24",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    text: "לורם איפסום דולור סיט אמט הבקיץ לכנוץ וואל מונפרד אגת שנרא וק. קלאצי צופעט צוט יבש, סיט יבש, - בורק? לכנו למרקוח .",
   },
   {
     id: 6,
     title: "18:22 20.12.24",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    text: "לורם איפסום דולור סיט אמט הבקיץ לכנוץ וואל מונפרד אגת שנרא וק. קלאצי צופעט צוט יבש, סיט יבש, - בורק? לכנו למרקוח .",
   },
 ];
 
@@ -94,8 +94,8 @@ export const Aside = () => {
     >
       <AsideMenu toggleActive={toggleActive} menuIsActive={menuIsActive} />
       <div className={styles.messages}>
-        <AsideMessages title={"Сообщения"} messages={M_DATA} />
-        <AsideMessages title={"Предупреждения"} messages={W_DATA} />
+        <AsideMessages title={"עדכוני תנועה "} messages={M_DATA} />
+        <AsideMessages title={"התראות"} messages={W_DATA} />
       </div>
     </div>
   );

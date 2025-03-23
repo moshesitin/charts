@@ -6,7 +6,7 @@
 }
 
 .menuBtn {
-  padding: 19.3px 0;
+  padding: 19.3px 7px;
 }
 
 .active .menuBtn {
@@ -38,6 +38,10 @@
   align-items: center;
   gap: 5px;
   padding: 16px 4px;
+}
+
+.menuItem:hover {
+  background-color: #41BCB6;
 }
 
 .menuInMenu {

@@ -25,7 +25,7 @@ export const AsideMenu = ({ menuIsActive, toggleActive }) => {
                 <span className={styles.menuSvg}>
                     <Menu isActive={menuIsActive} />
                 </span>
-                <span className={styles.menuBtnText}>Меню</span>
+                <span className={styles.menuBtnText}>תפריט</span>
             </button>
             <div className={styles.linkContainer}>
                 <Link to={"/"}>
@@ -33,7 +33,7 @@ export const AsideMenu = ({ menuIsActive, toggleActive }) => {
                         <span className={styles.svg}>
                             <Dashboard />
                         </span>
-                        <span className={styles.linkText}>Dashboard</span>
+                        <span className={styles.linkText}>לוח בקרה</span>
                     </span>
                 </Link>
             </div>
@@ -44,7 +44,7 @@ export const AsideMenu = ({ menuIsActive, toggleActive }) => {
                             <span className={styles.svg}>
                                 <Reports />
                             </span>
-                            <span className={styles.linkText}>Отчеты</span>
+                            <span className={styles.linkText}>דוחות</span>
                         </span>
                         <span className={styles.arrow}>
                             <Arrow />
@@ -58,7 +58,7 @@ export const AsideMenu = ({ menuIsActive, toggleActive }) => {
                         <span className={styles.svg}>
                             <Changes />
                         </span>
-                        <span className={styles.linkText}>Изменения</span>
+                        <span className={styles.linkText}>שינויים מתוכננים</span>
                     </span>
                 </Link>
             </div>
@@ -68,7 +68,7 @@ export const AsideMenu = ({ menuIsActive, toggleActive }) => {
                         <span className={styles.svg}>
                             <Bell />
                         </span>
-                        <span className={styles.linkText}>Сообщения</span>
+                        <span className={styles.linkText}>עדכוני תנועה</span>
                     </span>
                 </Link>
             </div>
@@ -78,7 +78,7 @@ export const AsideMenu = ({ menuIsActive, toggleActive }) => {
                         <span className={styles.svg}>
                             <Warnings />
                         </span>
-                        <span className={styles.linkText}>Предупреждения</span>
+                        <span className={styles.linkText}>התראות</span>
                     </span>
                 </Link>
             </div>
@@ -88,7 +88,7 @@ export const AsideMenu = ({ menuIsActive, toggleActive }) => {
                         <span className={styles.svg}>
                             <Person />
                         </span>
-                        <span className={styles.linkText}>Личные данные</span>
+                        <span className={styles.linkText}>פרטים אישיים</span>
                     </span>
                 </Link>
             </div>
@@ -98,7 +98,7 @@ export const AsideMenu = ({ menuIsActive, toggleActive }) => {
                         <span className={styles.svg}>
                             <Clients />
                         </span>
-                        <span className={styles.linkText}>Клиенты</span>
+                        <span className={styles.linkText}>לקוחות</span>
                     </span>
                 </Link>
             </div>
@@ -108,7 +108,7 @@ export const AsideMenu = ({ menuIsActive, toggleActive }) => {
                         <span className={styles.svg}>
                             <Users />
                         </span>
-                        <span className={styles.linkText}>Пользователи</span>
+                        <span className={styles.linkText}>משתמשים</span>
                     </span>
                 </Link>
             </div>
@@ -118,7 +118,7 @@ export const AsideMenu = ({ menuIsActive, toggleActive }) => {
                         <span className={styles.svg}>
                             <Tables />
                         </span>
-                        <span className={styles.linkText}>Таблицы</span>
+                        <span className={styles.linkText}>טבלאות מערכת</span>
                     </span>
                 </Link>
             </div>
@@ -128,7 +128,7 @@ export const AsideMenu = ({ menuIsActive, toggleActive }) => {
                         <span className={styles.svg}>
                             <Exit />
                         </span>
-                        <span className={styles.linkText}>Выйти</span>
+                        <span className={styles.linkText}>התנתק</span>
                     </span>
                 </Link>
             </div>

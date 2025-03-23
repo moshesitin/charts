@@ -58,13 +58,13 @@ const MenuButtons = ({ handlerActive }) => {
         <div className={styles.buttons}>
             <DateInput />
             <Button onClick={handlerActive} color={"blue"}>
-                <span className={styles.buttonText}>Фильтр</span>
+                <span className={styles.buttonText}>סנן</span>
                 <span className={styles.svg}>
                     <FilterSvg />
                 </span>
             </Button>
             <Button color={"blue"}>
-                <span className={styles.buttonText}>Упорядочить</span>
+                <span className={styles.buttonText}>סדר</span>
                 <span className={styles.svg}>
                     <Pen />
                 </span>

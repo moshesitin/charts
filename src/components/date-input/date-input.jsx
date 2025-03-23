@@ -17,7 +17,7 @@ export const DateInput = () => {
                     setDateRange(update);
                 }}
                 dateFormat="dd/MM/yy"
-                placeholderText="Выберите Дату"
+                placeholderText="בחר תאריך"
             />
         </div>
     );
