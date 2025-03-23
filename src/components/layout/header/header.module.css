@@ -33,13 +33,14 @@
 
 .user, .status {
   position: relative;
+  white-space: nowrap;
 }
 
 .user::before {
   content: "";
   display: inline-block;
   width: 1px;
-  height: 84px;
+  height: 400%;
   position: absolute;
   inset-inline-start: calc(100% + 15px);
   top: 50%;
@@ -129,12 +130,22 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 921px) {
+  .btnText {
+    display: none;
+  }
+
+  .header {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 576px) {
   .header {
     justify-content: center;
   }
 
-  .active {
+  .active  {
     display: none;
   }
 }

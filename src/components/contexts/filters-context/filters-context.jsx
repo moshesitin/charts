@@ -8,6 +8,12 @@ export const FiltersContextProvider = ({ children }) => {
         setFilters({});
     };
 
+    const deleteFilter = (name) => {
+        const tempState = { ...filters };
+        delete tempState[name];
+        setFilters(tempState);
+    };
+
     const toggleFilter = (event) => {
         const name = event.target.name.split("/")[0];
         const param = event.target.value;
@@ -34,7 +40,7 @@ export const FiltersContextProvider = ({ children }) => {
 
     return (
         <FiltersContext.Provider
-            value={{ clearFilters, toggleFilter, filters }}
+            value={{ clearFilters, toggleFilter, filters, deleteFilter }}
         >
             {children}
         </FiltersContext.Provider>

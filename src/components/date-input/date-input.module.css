@@ -13,11 +13,12 @@
 }
 
 .dateInput input {
-    max-width: 140px;
+    max-width: 145px;
     display: flex;
     text-align: center;
     background: transparent;
 }
+
 
 @supports (padding-inline-start: 0) {
     .dateInput {

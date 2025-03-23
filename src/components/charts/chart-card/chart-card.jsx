@@ -3,6 +3,7 @@ import { File } from "../../../svg/file";
 import { Select } from "../../select/select";
 import styles from "./chart-card.module.css";
 import { useRef, useState } from "react";
+import classNames from "classnames";
 
 const chartsTypes = {
     Column: "ColumnChart",
@@ -12,12 +13,16 @@ const chartsTypes = {
 };
 
 export const ChartCard = ({ chart }) => {
-    const { data, options, title, type } = chart;
+    const { data, options, title, type, isOnline, thereIsTypeData } = chart;
     const [chartsType, setChartsType] = useState(type);
+    const [chartsTypeData, setChartsTypeData] = useState("1");
     const chartRef = useRef(null);
 
-    const handlerRadioClick = (event) => {
+    const handlerTypeClick = (event) => {
         setChartsType(event.target.value);
+    };
+    const handlerTypeDataClick = (event) => {
+        setChartsTypeData(event.target.value);
     };
 
     const downloadChart = () => {
@@ -43,21 +48,43 @@ export const ChartCard = ({ chart }) => {
     };
 
     return (
-        <div className={styles.chart}>
+        <div
+            className={classNames(styles.chart, {
+                [styles.data]: thereIsTypeData,
+            })}
+        >
             <div className={styles.head}>
-                <h3 className={styles.title}>{title}</h3>
+                <div className={styles.headTitle}>
+                    <h3 className={styles.title}>{title}</h3>
+                    {isOnline && <p className={styles.subtitle}>(онлайн)</p>}
+                </div>
                 <div className={styles.activities}>
-                    <Select
-                        name="Вид отчета"
-                        items={["Column", "Bar", "Line", "Area"]}
-                        style="round"
-                        size="small"
-                        type="radio"
-                        activeFilters={new Set([chartsType])}
-                        thereIsSearch={false}
-                        thereIsAgree={false}
-                        onClick={handlerRadioClick}
-                    />
+                    <div className={styles.selects}>
+                        {thereIsTypeData && (
+                            <Select
+                                name="Тип данных"
+                                items={["1", "2", "3"]}
+                                style="round"
+                                size="small"
+                                type="radio"
+                                activeFilters={new Set([chartsTypeData])}
+                                thereIsSearch={false}
+                                thereIsAgree={false}
+                                onClick={handlerTypeDataClick}
+                            />
+                        )}
+                        <Select
+                            name="Вид отчета"
+                            items={["Column", "Bar", "Line", "Area"]}
+                            style="round"
+                            size="small"
+                            type="radio"
+                            activeFilters={new Set([chartsType])}
+                            thereIsSearch={false}
+                            thereIsAgree={false}
+                            onClick={handlerTypeClick}
+                        />
+                    </div>
                     <button onClick={downloadChart} className={styles.download}>
                         <span className={styles.svg}>
                             <File />
@@ -70,6 +97,7 @@ export const ChartCard = ({ chart }) => {
                 width="100%"
                 height="400px"
                 data={data}
+                className={styles.mainChart}
                 options={options}
                 getChartWrapper={(chartWrapper) => {
                     chartRef.current = chartWrapper;

@@ -39,7 +39,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 921px) {
     .auth {
         grid-template-columns: 1fr;
         height: auto;

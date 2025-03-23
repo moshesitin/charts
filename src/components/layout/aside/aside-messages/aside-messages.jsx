@@ -14,7 +14,7 @@ export const AsideMessages = ({ title, messages }) => {
             slidesPerView={5}
             spaceBetween={20}
             style={{
-              maxHeight: "880px",
+              maxHeight: "800px",
               overflow: "hidden",
             }}
           >

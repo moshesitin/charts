@@ -29,6 +29,13 @@
 
 .linkContainer {
   width: 100%;
+}
+
+.linkContainer:nth-child(2), .linkContainer:last-child {
+  border-top: 1px solid #fff;
+}
+
+.active .linkContainer {
   border-top: 1px solid #fff;
 }
 

@@ -1,6 +1,7 @@
 import { DateInput } from "../../date-input/date-input";
 import { Button } from "../../button/button";
 import { FilterSvg } from "../../../svg/filter-svg";
+import { Cross } from "../../../svg/cross";
 import { Pen } from "../../../svg/pen";
 import styles from "./filters-menu-top.module.css";
 import { useFilters } from "../../contexts/filters-context/use-filters";
@@ -36,7 +37,7 @@ const Filters = () => {
 };
 
 const Filter = ({ name }) => {
-    const { filters } = useFilters();
+    const { filters, deleteFilter } = useFilters();
     let filterItems = filters[name];
 
     if (!filterItems) {
@@ -47,8 +48,18 @@ const Filter = ({ name }) => {
 
     return (
         <div className={styles.filter}>
-            <span className={styles.filterText}>{name}: </span>
-            <span className={styles.filterText}>{filterItems}</span>
+            <span className={styles.filterName}>{name}: </span>
+            <span className={styles.filterText}>
+                {filterItems}
+                <button
+                    onClick={() => {
+                        deleteFilter(name);
+                    }}
+                    className={styles.cross}
+                >
+                    <Cross />
+                </button>
+            </span>
         </div>
     );
 };

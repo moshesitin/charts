@@ -18,14 +18,31 @@
 }
 
 .filter {
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
     white-space: nowrap;
     scrollbar-width: thin;
 }
 
-.filterText {
+.cross {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: -3px;
+    cursor: pointer;
+}
+
+.filterName, .filterText {
     font-size: 12px;
     line-height: 1;
+}
+
+.filterText {
+    position: relative;
+    padding-right: 10px;
+    display: inline-block;
 }
 
 .buttons {
@@ -76,6 +93,12 @@
 }
 
 @media (max-width: 991px) {
+    .buttonText {
+        display: none;
+    }
+}
+
+@media (max-width: 630px) {
     .top {
         display: flex;
     }
@@ -94,6 +117,10 @@
 
     .buttonText {
         display: none;
+    }
+
+    .buttonText {
+        display: inline;
     }
 }
 

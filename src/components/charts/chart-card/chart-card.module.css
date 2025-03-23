@@ -3,6 +3,7 @@
     box-shadow: 0px 0px 15px 0px #DBDBDB;
     border-radius: 20px;
     padding: 30px 30px 40px 40px;
+    position: relative;
 }
 
 .head {
@@ -10,16 +11,39 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
+    padding-bottom: 19px;
+    border-bottom: 1px solid #C8C8C8;
+}
+
+.data .head {
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+}
+
+.data .download {
+    position: absolute;
+    top: 15px;
+    right: 15px;
 }
 
 .title {
     font: 700 24px/1 var(--font);
+    margin-bottom: 7px;
+}
+
+.selects {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
 }
 
 .activities {
     display: flex;
     align-items: center;
     gap: 19px;
+    flex-wrap: nowrap;
 }
 
 .download {
@@ -39,13 +63,17 @@
     width: 33px;
 }
 
+.mainChart>div>div:first-child, .mainChart svg {
+    width: 100% !important;
+}
+
 @media (max-width: 991px) {
     .chart {
         padding: 15px;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 921px) {
     .head {
         /* flex-direction: column; */
         /* align-items: center; */
@@ -55,27 +83,18 @@
     .activities {
         width: 100%;
     }
+
+    .selects {
+        flex-direction: column;
+
+    }
+
+    .download {
+\
 }
 
 @media (max-width: 576px) {
     .title {
         font-size: 18px;
-    }
-
-    .chart {
-        position: relative;
-    }
-
-    .download {
-        /* position: absolute; */
-        /* top: 15px;
-        right: 15px; */
-        width: 40px;
-        height: 40px;
-    }
-
-    .svg {
-        width: 20px;
-        height: 20px;
     }
 }

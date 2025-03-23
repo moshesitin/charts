@@ -1,7 +1,11 @@
 import { useState } from "react";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./date-input.module.css";
+import he from "date-fns/locale/he";
+import "./date-input.css";
+
+registerLocale("he", he);
 
 export const DateInput = () => {
     const [dateRange, setDateRange] = useState([null, null]);
@@ -16,6 +20,7 @@ export const DateInput = () => {
                 onChange={(update) => {
                     setDateRange(update);
                 }}
+                locale="he"
                 dateFormat="dd/MM/yy"
                 placeholderText="בחר תאריך"
             />
