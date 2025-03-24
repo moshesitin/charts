@@ -5,7 +5,7 @@ import { Reports } from "../../components/reports/reports";
 export const DashboardPage = () => {
     return (
         <>
-            <FiltersMenu title="Дашборд" />
+            <FiltersMenu title="לוח בקרה" />
             <Charts />
             <Reports />
         </>

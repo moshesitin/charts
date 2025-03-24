@@ -36,11 +36,16 @@
   white-space: nowrap;
 }
 
+.user {
+  margin-inline-end: 20px;
+  padding-inline-end: 20px;
+}
+
 .user::before {
   content: "";
   display: inline-block;
   width: 1px;
-  height: 400%;
+  height: 200%;
   position: absolute;
   inset-inline-start: calc(100% + 15px);
   top: 50%;

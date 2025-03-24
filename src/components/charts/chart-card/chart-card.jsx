@@ -27,13 +27,13 @@ export const ChartCard = ({ chart }) => {
 
     const downloadChart = () => {
         if (!chartRef.current) {
-            alert("Диаграмма ещё не готова. Пожалуйста, подождите.");
+            alert("התרשים עדיין לא מוכן. אנא המתן.");
             return;
         }
 
         const chart = chartRef.current.getChart();
         if (!chart) {
-            alert("Не удалось получить диаграмму. Попробуйте снова.");
+            alert("הצגת תרשים נכשלה, אנא נסה שוב.");
             return;
         }
 
@@ -56,13 +56,13 @@ export const ChartCard = ({ chart }) => {
             <div className={styles.head}>
                 <div className={styles.headTitle}>
                     <h3 className={styles.title}>{title}</h3>
-                    {isOnline && <p className={styles.subtitle}>(онлайн)</p>}
+                    {isOnline && <p className={styles.subtitle}>(זמן אמת)</p>}
                 </div>
                 <div className={styles.activities}>
                     <div className={styles.selects}>
                         {thereIsTypeData && (
                             <Select
-                                name="Тип данных"
+                                name="סוג תלונה"
                                 items={["1", "2", "3"]}
                                 style="round"
                                 size="small"
@@ -74,7 +74,7 @@ export const ChartCard = ({ chart }) => {
                             />
                         )}
                         <Select
-                            name="Вид отчета"
+                            name="תצוגת נתונים"
                             items={["Column", "Bar", "Line", "Area"]}
                             style="round"
                             size="small"

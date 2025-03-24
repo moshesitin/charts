@@ -12,6 +12,8 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    border-radius: 25em;
+
 }
 
 .round {
@@ -82,13 +84,13 @@
 }
 
 .checkboxContainer {
-    max-height: 140px;
+    max-height: 240px;
     overflow: auto;
     scrollbar-width: thin;
     border-top: 1px solid #7C7C7C;
     padding: 8px 0 8px 17px;
     display: flex;
-    gap: 11px;
+    gap: 0px;
     flex-direction: column;
 }
 

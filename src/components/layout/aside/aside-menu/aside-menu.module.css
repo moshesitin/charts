@@ -13,6 +13,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .menuBtnText {
@@ -31,6 +32,10 @@
   width: 100%;
 }
 
+.linkContainer:hover {
+  background-color: #41BCB6;
+}
+
 .linkContainer:nth-child(2), .linkContainer:last-child {
   border-top: 1px solid #fff;
 }
@@ -47,9 +52,9 @@
   padding: 16px 4px;
 }
 
-.menuItem:hover {
+/* .menuItem:hover {
   background-color: #41BCB6;
-}
+} */
 
 .menuInMenu {
   display: flex;

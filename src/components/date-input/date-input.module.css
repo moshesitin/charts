@@ -5,15 +5,17 @@
     display: flex;
     border-radius: 25em;
     justify-content: center;
+    direction: ltr;
 }
 
 .dateInput input, .dateInput input::placeholder {
     color: #000;
-    font: 400 14px/1 var(--font);
+    font: 400 17px/1 var(--font);
+    cursor: pointer;
 }
 
 .dateInput input {
-    max-width: 145px;
+    /* max-width: 145px; */
     display: flex;
     text-align: center;
     background: transparent;

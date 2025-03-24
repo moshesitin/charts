@@ -102,7 +102,7 @@ const Window = ({
     return (
         <div className={styles.window}>
             {thereIsSearch && <SearchFiled handlerInput={handlerInput} />}
-            {!thereIsSearch && <p className={styles.head}>Выбери вид </p>}
+            {!thereIsSearch && <p className={styles.head}>בחר תצוגה </p>}
             <Results
                 foundItems={foundItems}
                 checkboxClick={checkboxClick}
@@ -120,7 +120,7 @@ const SearchFiled = ({ handlerInput }) => {
         <div className={styles.customInput}>
             <input
                 className={styles.input}
-                placeholder="Поиск"
+                placeholder="חיפוש"
                 type="text"
                 onInput={handlerInput}
             />
@@ -154,7 +154,7 @@ const Submit = ({ handlerClick }) => {
     return (
         <div className={styles.submitContainer}>
             <button onClick={handlerClick} className={styles.submit}>
-                <span className={styles.submitText}>Выбрать</span>
+                <span className={styles.submitText}>לבחור</span>
             </button>
         </div>
     );
