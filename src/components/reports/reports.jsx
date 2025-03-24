@@ -11,7 +11,7 @@ import { Arrow } from "../../svg/arrow";
 import { BackArrow } from "../../svg/back-arrow/back-arrow";
 import { NextArrow } from "../../svg/next-arrow/next-arrow";
 
-const headData = ["Данные 1", "Данные 2", "Данные 3", "Данные 4", "Данные 5"];
+const headData = ["קו", "כמות נסיעות מתוכננת", "אחוז ביצוע", "מדד דיוק", "כמות דיווחים"];
 const data = [["{Data}"]];
 
 export const Reports = () => {
@@ -43,7 +43,7 @@ export const Reports = () => {
 
     return (
         <section className={styles.reports}>
-            <h2 className={styles.title}>Отчет</h2>
+            <h2 className={styles.title}>סיכום לפי קו</h2>
             <ReportsHead
                 handlerSave={handlerSave}
                 countRows={countRows}
@@ -66,7 +66,7 @@ const ReportsHead = ({ handlerSave, countRows, handlerRadio }) => {
             <div className={styles.search}>
                 <input
                     type="text"
-                    placeholder="Поиск"
+                    placeholder="חיפוש"
                     className={styles.input}
                 />
                 <div className={styles.svg}>
@@ -75,7 +75,7 @@ const ReportsHead = ({ handlerSave, countRows, handlerRadio }) => {
             </div>
             <div className={styles.activities}>
                 <Select
-                    name={"Выберите количество строк"}
+                    name={"כמות שורות לתצוגה"}
                     items={[10, 20, 30]}
                     activeFilters={new Set([countRows])}
                     type={"radio"}

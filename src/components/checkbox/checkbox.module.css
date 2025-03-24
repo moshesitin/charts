@@ -3,6 +3,11 @@
     align-items: center;
     gap: 8px;
     cursor: pointer;
+    padding: 5px 0;
+}
+
+.label:hover {
+    background-color: #f3f3f3;
 }
 
 .checkbox {
@@ -15,6 +20,7 @@
     display: inline-block;
     padding-inline-start: 30px;
     /* padding-left: 25px; */
+
 }
 
 .checkboxText::before {
@@ -27,6 +33,7 @@
     inset-inline-start: 0;
     top: 50%;
     transform: translate(0, -50%);
+    background-color: white;
 }
 
 .checkboxText::after {
@@ -34,16 +41,16 @@
     display: inline-block;
     position: absolute;
     transform: translate(0, -50%) scale(0);
-    width: 10px;
-    height: 5px;
+    width: 5px;
+    height: 10px;
     border-inline-start: 2px solid #000;
     border-bottom: 2px solid #000;
     transform-origin: center;
     transition: transform 0.2s ease;
-    inset-inline-start: 10px;
+    inset-inline-start: 3px;
     top: 50%;
 }
 
 .checkbox:checked+.checkboxText::after {
-    transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
 }

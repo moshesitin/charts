@@ -1,7 +1,9 @@
+
 .footer {
   background: var(--blue);
   padding: 11px 78px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   justify-content: space-between;
 }
@@ -13,10 +15,12 @@
 .text {
   color: #fff;
   font: 600 20px/1 var(--font);
+  text-align: center;
 }
 
 .img {
   max-width: 181px;
+  justify-self: end;
 }
 
 @supports (padding-inline-start: 0) {
@@ -28,6 +32,7 @@
 
 @media (max-width: 921px) {
   .footer {
+    display: flex;
     justify-content: center;
     padding-inline: 20px;
     padding-block: 20px;

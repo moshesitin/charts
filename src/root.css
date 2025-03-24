@@ -7,3 +7,18 @@
 body * {
   font: 400 16px/1 var(--font);
 }
+
+body {
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+button {
+  min-width: 100px;
+  justify-content: center;
+  transition: .5s;
+}
+
+/* button:hover {
+  transform: translateX(-3px);
+} */

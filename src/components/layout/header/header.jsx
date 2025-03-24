@@ -13,13 +13,13 @@ export const Header = ({ thereAreActivities = true }) => {
             {thereAreActivities && (
                 <div className={styles.active}>
                     <Button color={"grey"}>
-                        <span className={styles.btnText}>Поддержка</span>
+                        <span className={styles.btnText}>תמיכה</span>
                         <span className={styles.svg}>
                             <Help />
                         </span>
                     </Button>
-                    <span className={styles.user}>Привет {`{Name}`}!</span>
-                    <span className={styles.status}>Подключен</span>
+                    <span className={styles.user}>שלום, יענקי!</span>
+                    <span className={styles.status}>מחובר</span>
                 </div>
             )}
         </div>

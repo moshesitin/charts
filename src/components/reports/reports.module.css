@@ -43,6 +43,7 @@
     justify-content: center;
     border-radius: 50%;
     height: 48px;
+    min-width: 48px;
     width: 48px;
     flex-shrink: 0;
 }
@@ -64,6 +65,7 @@
     gap: 4px;
     margin-top: 44px;
     justify-content: center;
+    direction: ltr;
 }
 
 .pagination li a {

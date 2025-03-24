@@ -11,6 +11,7 @@
 
 .active.menu {
     height: 253.5px;
+    padding-inline-end: 100px;
 }
 
 .cross {
