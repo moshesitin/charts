@@ -2,6 +2,7 @@
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid #3AA6A1;
+    direction: rtl;
 }
 
 .react-datepicker__header {
