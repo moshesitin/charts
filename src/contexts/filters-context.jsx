@@ -53,8 +53,37 @@ export const FiltersProvider = ({ children }) => {
         City: 'CityName',
         RouteNumber: 'RouteNumber',
         LineType: 'LineType',
-        linegroup: 'RouteNumber'
+        linegroup: 'linegroup_id' // Изменено с RouteNumber на linegroup_id
     };
+
+    // Функция для получения групп линий
+    const fetchLineGroups = useCallback(async () => {
+        try {
+            const response = await axios.post(
+                `${url}/UsersChoice`,
+                {
+                    userName: user,
+                    password,
+                    data: { UserId: userId, SelectChoice: 'linegroup' }
+                },
+                { headers: { 'Content-Type': 'application/json' } }
+            );
+            
+            if (response.data && response.data.ResData) {
+                // Обновляем только фильтр для групп линий
+                setFilters(prevFilters => ({
+                    ...prevFilters,
+                    linegroup: response.data.ResData.map(group => 
+                        // Предполагаем, что каждая группа имеет id и название
+                        // Обновите это в соответствии с реальным форматом данных
+                        `${group.linegroup_id} - ${group.linegroup_name}` || group.linegroup_id
+                    )
+                }));
+            }
+        } catch (error) {
+            console.error("Ошибка при получении групп линий:", error);
+        }
+    }, [url, user, password, userId]);
 
     const fetchData = useCallback(async () => {
         setIsLoading(true);
@@ -75,18 +104,27 @@ export const FiltersProvider = ({ children }) => {
             // Инициализируем фильтры со всеми доступными значениями
             const initialFilters = {};
             Object.entries(fieldMapping).forEach(([filterKey, dataKey]) => {
-                initialFilters[filterKey] = getUniqueValues(resData, dataKey);
+                // Для linegroup не устанавливаем значения здесь, так как они будут получены отдельным запросом
+                if (filterKey !== 'linegroup') {
+                    initialFilters[filterKey] = getUniqueValues(resData, dataKey);
+                }
             });
             
-            setFilters(initialFilters);
+            setFilters(prevFilters => ({
+                ...initialFilters,
+                linegroup: prevFilters.linegroup // Сохраняем текущие значения групп линий
+            }));
             setFilteredData(resData);
+            
+            // Получаем группы линий отдельным запросом
+            fetchLineGroups();
         } catch (error) {
             console.error("Ошибка API:", error);
             setError(error.response?.data || error.message);
         } finally {
             setIsLoading(false);
         }
-    }, [url, user, password, userId]);
+    }, [url, user, password, userId, fetchLineGroups]);
 
     useEffect(() => {
         fetchData();

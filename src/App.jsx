@@ -4,6 +4,7 @@ import { DashboardPage } from "./pages/dashboard-page/dashboard-page";
 import { FiltersProvider } from "./contexts/filters-context";
 import { AuthLayout } from "./components/layout/auth-layout";
 import { AuthorizationPage } from "./pages/authorization-page/authorization-page";
+import { AuthProvider } from "./components/auth/auth-context";
 
 export const App = () => {
     const router = createBrowserRouter([
@@ -20,8 +21,10 @@ export const App = () => {
     ]);
 
     return (
-        <FiltersProvider>
-            <RouterProvider router={router} />
-        </FiltersProvider>
+        <AuthProvider>
+            <FiltersProvider>
+                <RouterProvider router={router} />
+            </FiltersProvider>
+        </AuthProvider>
     );
 };
