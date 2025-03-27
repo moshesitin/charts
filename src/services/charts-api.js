@@ -2,10 +2,9 @@ import axios from 'axios';
 
 export const fetchChartData = async (endpoint, params, authData) => {
     try {
-        // ОБЯЗАТЕЛЬНО: Добавляем UserId из authData в params и преобразуем в число
         const requestData = {
             ...params,
-            UserId: parseInt(authData.UserId, 10) || 2 // Обеспечиваем числовой тип
+            UserId: parseInt(authData.UserId, 10) || 2
         };
         
         const response = await axios.post(
@@ -30,92 +29,43 @@ export const fetchChartData = async (endpoint, params, authData) => {
     }
 };
 
-// Получение данных плана/выполнения (תכנון / ביצוע)
+const createParams = (filters) => ({
+    StartDate: filters.startDate || new Date().toISOString().split('T')[0],
+    EndDate: filters.endDate || new Date().toISOString().split('T')[0],
+    GroupBy: filters.groupBy || 'MONTH',
+    ...(filters.City && { City: filters.City }),
+    ...(filters.AgencyId && { AgencyId: filters.AgencyId }),
+    ...(filters.ClusterId && { ClusterId: filters.ClusterId }),
+    ...(filters.SubCluster && { SubCluster: filters.SubCluster }),
+    ...(filters.LineType && { LineType: filters.LineType }),
+    ...(filters.LineId && { LineId: filters.LineId }),
+    ...(filters.linegroup && { linegroup: filters.linegroup })
+});
+
 export const fetchPlanVsPerformance = async (filters, authData) => {
-    const params = {
-        StartDate: filters.startDate || new Date().toISOString().split('T')[0],
-        EndDate: filters.endDate || new Date().toISOString().split('T')[0],
-        GroupBy: filters.groupBy || 'MONTH',
-        ...(filters.City && { City: filters.City }),
-        ...(filters.AgencyId && { AgencyId: filters.AgencyId }),
-        ...(filters.ClusterId && { ClusterId: filters.ClusterId }),
-        ...(filters.SubCluster && { SubCluster: filters.SubCluster }),
-        ...(filters.LineType && { LineType: filters.LineType }),
-        ...(filters.LineId && { LineId: filters.LineId }),
-        ...(filters.linegroup && { linegroup: filters.linegroup })
-    };
-    
+    const params = createParams(filters);
     return fetchChartData('TripsPlannedVSPerformed', params, authData);
 };
 
-// Получение данных процента выполнения (אחוז ביצוע)
 export const fetchPerformancePercentage = async (filters, authData) => {
-    const params = {
-        StartDate: filters.startDate || new Date().toISOString().split('T')[0],
-        EndDate: filters.endDate || new Date().toISOString().split('T')[0],
-        GroupBy: filters.groupBy || 'MONTH',
-        ...(filters.City && { City: filters.City }),
-        ...(filters.AgencyId && { AgencyId: filters.AgencyId }),
-        ...(filters.ClusterId && { ClusterId: filters.ClusterId }),
-        ...(filters.SubCluster && { SubCluster: filters.SubCluster }),
-        ...(filters.LineType && { LineType: filters.LineType }),
-        ...(filters.LineId && { LineId: filters.LineId }),
-        ...(filters.linegroup && { linegroup: filters.linegroup })
-    };
-    
+    const params = createParams(filters);
     return fetchChartData('TripsPlannedVSPerformedPercentage', params, authData);
 };
 
-// Получение данных о запланированных поездках (סוג נסיעות מתוכנן)
 export const fetchPlannedTrips = async (filters, authData) => {
-    const params = {
-        StartDate: filters.startDate || new Date().toISOString().split('T')[0],
-        EndDate: filters.endDate || new Date().toISOString().split('T')[0],
-        GroupBy: filters.groupBy || 'MONTH',
-        ...(filters.City && { City: filters.City }),
-        ...(filters.AgencyId && { AgencyId: filters.AgencyId }),
-        ...(filters.ClusterId && { ClusterId: filters.ClusterId }),
-        ...(filters.SubCluster && { SubCluster: filters.SubCluster }),
-        ...(filters.LineType && { LineType: filters.LineType }),
-        ...(filters.LineId && { LineId: filters.LineId }),
-        ...(filters.linegroup && { linegroup: filters.linegroup })
-    };
-    
+    const params = createParams(filters);
     return fetchChartData('TripsPlanned', params, authData);
 };
 
-// Получение данных о деталях выполнения по линиям
 export const fetchLinePerformanceDetails = async (filters, authData) => {
     const params = {
-        StartDate: filters.startDate || new Date().toISOString().split('T')[0],
-        EndDate: filters.endDate || new Date().toISOString().split('T')[0],
-        UserId: parseInt(authData.UserId, 10) || 2, // Явное указание числового UserId
-        ...(filters.City && { City: filters.City }),
-        ...(filters.AgencyId && { AgencyId: filters.AgencyId }),
-        ...(filters.ClusterId && { ClusterId: filters.ClusterId }),
-        ...(filters.SubCluster && { SubCluster: filters.SubCluster }),
-        ...(filters.LineType && { LineType: filters.LineType }),
-        ...(filters.LineId && { LineId: filters.LineId }),
-        ...(filters.linegroup && { linegroup: filters.linegroup })
+        ...createParams(filters),
+        UserId: parseInt(authData.UserId, 10) || 2
     };
-    
-    return await fetchChartData('PerformanceDetailsForLine', params, authData);
+    return fetchChartData('PerformanceDetailsForLine', params, authData);
 };
 
-// Получение данных о запланированных изменениях
 export const fetchPlannedChanges = async (filters, authData) => {
-    const params = {
-        StartDate: filters.startDate || new Date().toISOString().split('T')[0],
-        EndDate: filters.endDate || new Date().toISOString().split('T')[0],
-        GroupBy: filters.groupBy || 'MONTH',
-        ...(filters.City && { City: filters.City }),
-        ...(filters.AgencyId && { AgencyId: filters.AgencyId }),
-        ...(filters.ClusterId && { ClusterId: filters.ClusterId }),
-        ...(filters.SubCluster && { SubCluster: filters.SubCluster }),
-        ...(filters.LineType && { LineType: filters.LineType }),
-        ...(filters.LineId && { LineId: filters.LineId }),
-        ...(filters.linegroup && { linegroup: filters.linegroup })
-    };
-    
+    const params = createParams(filters);
     return fetchChartData('TripsPlannedChanges', params, authData);
 };

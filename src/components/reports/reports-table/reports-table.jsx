@@ -1,6 +1,7 @@
 import styles from "./reports-table.module.css";
+import React from "react";
 
-export const ReportsTable = ({ headData, data, countRows, ref }) => {
+export const ReportsTable = React.forwardRef(({ headData, data, countRows }, ref) => {
     return (
         <div ref={ref} className={styles.table}>
             <div className={styles.tableContainer}>
@@ -11,27 +12,20 @@ export const ReportsTable = ({ headData, data, countRows, ref }) => {
                         </div>
                     ))}
                 </div>
-                {[...new Array(countRows)].map((_, rowI) => {
-                    return (
+                {data.length === 0 ? (
+                    <div className={styles.noData}>אין נתונים לתצוגה</div>
+                ) : (
+                    data.slice(0, countRows).map((row, rowI) => (
                         <div className={styles.row} key={rowI}>
-                            {headData.map((_, columnI) => {
-                                let rowData;
-                                if (data[rowI]) {
-                                    if (data[rowI][columnI]) {
-                                        rowData = data[rowI][columnI];
-                                    }
-                                }
-
-                                return (
-                                    <div className={styles.item} key={columnI}>
-                                        {rowData}
-                                    </div>
-                                );
-                            })}
+                            {row.map((cell, columnI) => (
+                                <div className={styles.item} key={columnI}>
+                                    {cell}
+                                </div>
+                            ))}
                         </div>
-                    );
-                })}
+                    ))
+                )}
             </div>
         </div>
     );
-};
+});

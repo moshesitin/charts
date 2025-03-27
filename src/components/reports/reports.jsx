@@ -2,7 +2,7 @@ import { Search } from "../../svg/search";
 import { File } from "../../svg/file";
 import { ReportsTable } from "./reports-table/reports-table";
 import styles from "./reports.module.css";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
 import { Select } from "../select/select";
@@ -13,9 +13,9 @@ import { NextArrow } from "../../svg/next-arrow/next-arrow";
 import { fetchLinePerformanceDetails } from "../../services/charts-api";
 import { useAuth } from "../auth/auth-context";
 import { useFilters } from "../../contexts/filters-context";
+import ExcelJS from "exceljs";
 
 const headData = ["קו", "כמות נסיעות מתוכננת", "אחוז ביצוע", "מדד דיוק", "כמות דיווחים"];
-const data = [["{Data}"]];
 
 export const Reports = () => {
     const tableRef = useRef(null);
@@ -26,61 +26,83 @@ export const Reports = () => {
     const { authData } = useAuth();
     const { selectedFilters } = useFilters();
 
-    useEffect(() => {
-        const loadLinePerformanceData = async () => {
-            setIsLoading(true);
-            setError(null);
-            
-            try {
-                const apiFilters = {
-                    startDate: '2023-01-01',
-                    endDate: '2023-12-31',
-                    ...selectedFilters
-                };
-                
-                const data = await fetchLinePerformanceDetails(apiFilters, authData);
-                
-                const sortedData = data.sort((a, b) => 
-                    b.PerformancePercentage - a.PerformancePercentage
-                );
-                
-                const tableData = sortedData.map(line => [
-                    line.LineID.toString(),
-                    line.Planned.toLocaleString(),
-                    `${line.PerformancePercentage.toFixed(2)}%`,
-                    line.AccuracyIndex || "N/A",
-                    line.ReportsCount || "N/A"
-                ]);
-                
-                setLineData(tableData);
-            } catch (err) {
-                console.error("Ошибка при загрузке данных о линиях:", err);
-                setError(err.message || "Ошибка при загрузке данных");
-            } finally {
-                setIsLoading(false);
-            }
-        };
+    const loadLinePerformanceData = useCallback(async () => {
+        setIsLoading(true);
+        setError(null);
         
-        loadLinePerformanceData();
+        try {
+            const apiFilters = {
+                startDate: '2023-01-01',
+                endDate: '2023-12-31',
+                ...selectedFilters
+            };
+            
+            const data = await fetchLinePerformanceDetails(apiFilters, authData);
+            
+            if (!data || data.length === 0) {
+                console.log('No data received from API');
+                setLineData([]);
+                return;
+            }
+            
+            const sortedData = data.sort((a, b) => 
+                b.PerformancePercentage - a.PerformancePercentage
+            );
+            
+            const tableData = sortedData.map(line => [
+                line.LineID.toString(),
+                line.Planned.toLocaleString(),
+                `${line.PerformancePercentage.toFixed(2)}%`,
+                line.AccuracyIndex || "N/A",
+                line.ReportsCount || "N/A"
+            ]);
+            
+            setLineData(tableData);
+        } catch (err) {
+            console.error("Ошибка при загрузке данных о линиях:", err);
+            setError(err.message || "Ошибка при загрузке данных");
+        } finally {
+            setIsLoading(false);
+        }
     }, [selectedFilters, authData]);
 
-    const handlerSave = () => {
-        if (tableRef.current) {
-            tableRef.current.style.overflow = "visible";
-            tableRef.current.style.width = "max-content";
+    useEffect(() => {
+        loadLinePerformanceData();
+    }, [loadLinePerformanceData]);
 
-            html2canvas(tableRef.current, {
-                scale: 2,
-                useCORS: true,
-            }).then((canvas) => {
-                tableRef.current.style.overflow = "auto";
-                tableRef.current.style.width = "100%";
-
-                canvas.toBlob((blob) => {
-                    saveAs(blob, "table.png");
-                });
-            });
+    const handlerSave = async () => {
+        if (!lineData || lineData.length === 0) {
+            alert("אין נתונים להורדה");
+            return;
         }
+
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet("Line Performance");
+
+        // Добавляем заголовки таблицы
+        worksheet.addRow(headData);
+
+        // Добавляем данные
+        lineData.forEach((row) => {
+            worksheet.addRow(row);
+        });
+
+        // Настраиваем ширину колонок
+        worksheet.columns.forEach((column) => {
+            column.width = column.header ? column.header.length + 5 : 15;
+        });
+
+        // Генерируем файл Excel
+        const buffer = await workbook.xlsx.writeBuffer();
+
+        // Создаём Blob и инициируем скачивание
+        const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "line-performance.xlsx";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
 
     const handlerRadio = (event) => {
@@ -158,8 +180,8 @@ const ReportsPagination = () => {
             pageCount={10}
             marginPagesDisplayed={1}
             pageRangeDisplayed={3}
-            onPageChange={() => {
-                console.log(123);
+            onPageChange={(data) => {
+                console.log(`Page selected: ${data.selected}`);
             }}
             containerClassName={styles.pagination}
             activeClassName={styles.active}

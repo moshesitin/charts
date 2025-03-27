@@ -16,10 +16,10 @@ export const Charts = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const url = import.meta.env.VITE_URL;
-    const userId = import.meta.env.VITE_USERID;
-    const user = import.meta.env.VITE_USER;
-    const password = import.meta.env.VITE_PASSWORD;
+    const url = import.meta.env.VITE_URL; // можно использовать authContext
+    const userId = import.meta.env.VITE_USERID; // можно использовать authContext
+    const user = import.meta.env.VITE_USER; // можно использовать authContext
+    const password = import.meta.env.VITE_PASSWORD; // можно использовать authContext
 
     const authData = { url, user, password, userId };
 
@@ -29,10 +29,9 @@ export const Charts = () => {
             setError(null);
             
             try {
-                // Поменять даты на прошедший период
                 const apiFilters = {
-                    startDate: '2025-01-01', // Подставьте реальную логику для дат
-                    endDate: '2025-03-24',   // Подставьте реальную логику для дат
+                    startDate: selectedFilters.startDate, // Подставьте реальную логику для дат
+                    endDate: selectedFilters.endDate,   // Подставьте реальную логику для дат
                     groupBy: 'MONTH',
                     City: selectedFilters.City,
                     AgencyId: selectedFilters.Agency,
@@ -253,7 +252,7 @@ export const Charts = () => {
             
             // Преобразуем сгруппированные данные в формат для графика
             const chartData = [
-                ["חודש", "Times", "Weekly", "Daily", "Stops"]
+                ["חודש", "זמנים", "שבועי", "יומי", "תחנות"]
             ];
             
             Object.entries(monthlyData).forEach(([month, data]) => {
@@ -377,6 +376,8 @@ export const Charts = () => {
                 else if (item.Delay > 20) delayCategories["מעל 20 דקות"]++;
                 else if (item.Status === "NotPerformed") delayCategories["לא בוצע"]++;
             });
+            console.log(`вот бро, задержкоЧарт: ${delayCategories}`);
+            
             
             const delayChartData = [
                 ["Категория", "Значение"],

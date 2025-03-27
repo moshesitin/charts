@@ -4,6 +4,8 @@ import { Select } from "../../select/select";
 import styles from "./chart-card.module.css";
 import { useRef, useState } from "react";
 import classNames from "classnames";
+// import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
 
 const chartsTypes = {
     Column: "ColumnChart",
@@ -25,23 +27,28 @@ export const ChartCard = ({ chart }) => {
         setChartsTypeData(event.target.value);
     };
 
-    const downloadChart = () => {
-        if (!chartRef.current) {
-            alert("התרשים עדיין לא מוכן. אנא המתן.");
+    const downloadChart = async () => {
+        if (!data || data.length === 0) {
+            alert("אין נתונים להורדה");
             return;
         }
 
-        const chart = chartRef.current.getChart();
-        if (!chart) {
-            alert("הצגת תרשים נכשלה, אנא נסה שוב.");
-            return;
-        }
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet("Chart Data");
 
-        const imageURI = chart.getImageURI();
+        // Добавляем данные в таблицу
+        data.forEach((row) => {
+            worksheet.addRow(row);
+        });
 
+        // Генерируем файл Excel
+        const buffer = await workbook.xlsx.writeBuffer();
+
+        // Создаём Blob и инициируем скачивание
+        const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
         const link = document.createElement("a");
-        link.href = imageURI;
-        link.download = "line-chart.png";
+        link.href = URL.createObjectURL(blob);
+        link.download = `${title || "chart-data"}.xlsx`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
