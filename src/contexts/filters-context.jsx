@@ -72,6 +72,7 @@ export const FiltersProvider = ({ children }) => {
             // Добавляем выбранные фильтры к запросу
             Object.entries(selectedFilters).forEach(([key, value]) => {
                 if (value && key in apiFieldMapping) {
+                    // Числовые значения уже должны быть числами из-за изменений в handleFilterChange
                     reqData[apiFieldMapping[key]] = value;
                 }
             });
@@ -79,6 +80,8 @@ export const FiltersProvider = ({ children }) => {
             // Добавляем даты если есть
             if (selectedFilters.StartDate) reqData.StartDate = selectedFilters.StartDate;
             if (selectedFilters.EndDate) reqData.EndDate = selectedFilters.EndDate;
+            
+            console.log('Sending request for', filterType, 'with data:', reqData);
             
             const response = await axios.post(
                 `${url}/UsersChoice`, 
@@ -90,20 +93,19 @@ export const FiltersProvider = ({ children }) => {
             );
             
             // Проверяем наличие данных, а не статус
-            if (response.data.ResData) {
+            if (response.data?.ResData) {
                 setFilterOptions(prev => ({
                     ...prev,
                     [filterType]: response.data.ResData || []
                 }));
-            } else if (response.data.Status === "OK" && response.data.Msg === "הפעולה הצליחה") {
+            } else if (response.data?.Status === "OK" && response.data?.Msg === "הפעולה הצליחה") {
                 // Если пришло сообщение об успехе, но нет данных - устанавливаем пустой массив
                 setFilterOptions(prev => ({
                     ...prev,
                     [filterType]: []
                 }));
             } else {
-                // В случае других ситуаций - обрабатываем как ошибку
-                throw new Error(response.data.Msg || 'Ошибка загрузки данных');
+                throw new Error(response.data?.Msg || 'Ошибка загрузки данных');
             }
         } catch (err) {
             console.error(`Ошибка при загрузке ${filterType}:`, err);
@@ -112,7 +114,6 @@ export const FiltersProvider = ({ children }) => {
             if (err.message !== "הפעולה הצליחה") {
                 setError(err.message || 'Произошла ошибка при загрузке фильтров');
             } else {
-                // Если это сообщение об успешной операции, но нет данных - устанавливаем пустой массив
                 setFilterOptions(prev => ({
                     ...prev,
                     [filterType]: []
@@ -134,10 +135,17 @@ export const FiltersProvider = ({ children }) => {
     const handleFilterChange = useCallback((e) => {
         const { id, value } = e.target;
         
+        // Определяем, какие поля должны быть числовыми
+        const numericFields = ['Agency', 'Cluster', 'linegroup'];
+        
+        // Преобразуем значение в число для числовых полей, если оно не пустое
+        const processedValue = numericFields.includes(id) && value !== '' ? 
+            Number(value) : value;
+        
         // Обновляем выбранный фильтр
         setSelectedFilters(prev => ({
             ...prev,
-            [id]: value
+            [id]: processedValue
         }));
         
         // Определяем зависимые фильтры для сброса

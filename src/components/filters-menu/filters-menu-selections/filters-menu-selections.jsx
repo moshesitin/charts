@@ -12,32 +12,58 @@ export const FiltersMenuSelections = () => {
 
     // Эта функция вызывается для отображения правильного значения из объекта опций
     const getDisplayValue = (optionObj, id) => {
+        // Специальная обработка для SubCluster - значение находится в ClusterSubDesc
+        if (id === "SubCluster" && optionObj.ClusterSubDesc !== undefined) {
+            return optionObj.ClusterSubDesc;
+        }
+        
+        // Для остальных фильтров используем маппинг
         const mappings = {
             "Agency": "agency_name",
             "Cluster": "ClusterName",
-            "SubCluster": "SubCluster",
+            "SubCluster": "SubCluster",  // Для обратной совместимости
             "City": "CityName", 
             "RouteNumber": "RouteNumber",
             "LineType": "LineType",
             "linegroup": "descrip"
         };
         
-        return optionObj[mappings[id] || id] || optionObj.value || optionObj;
+        // Получаем значение по маппингу
+        const value = optionObj[mappings[id] || id] || optionObj.value || optionObj;
+        
+        // Если значение - объект, преобразуем его в строку
+        if (value !== null && typeof value === "object") {
+            return String(Object.values(value)[0] || '');
+        }
+        
+        return String(value || '');
     };
 
     // Эта функция вызывается для получения правильного значения для option value
     const getOptionValue = (optionObj, id) => {
+        // Специальная обработка для SubCluster - значение находится в ClusterSubDesc
+        if (id === "SubCluster" && optionObj.ClusterSubDesc !== undefined) {
+            return optionObj.ClusterSubDesc;
+        }
+        
         const mappings = {
             "Agency": "agency_id",
             "Cluster": "Clusterid",
-            "SubCluster": "SubCluster",
+            "SubCluster": "SubCluster",  // Для обратной совместимости
             "City": "CityName",
             "RouteNumber": "LineID",
             "LineType": "LineType",
             "linegroup": "id"
         };
         
-        return optionObj[mappings[id] || id] || optionObj.value || optionObj;
+        const value = optionObj[mappings[id] || id] || optionObj.value || optionObj;
+        
+        // Преобразуем в строку, чтобы избежать проблем с объектами
+        if (value !== null && typeof value === "object") {
+            return String(Object.values(value)[0] || '');
+        }
+        
+        return String(value || '');
     };
 
     // Конфигурация для соответствия ID фильтра и типа запроса API
