@@ -1,6 +1,6 @@
 import { ChartCard } from "./chart-card/chart-card";
 import styles from "./charts.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useFilters } from "../../contexts/filters-context";
 import { 
     fetchPlanVsPerformance, 
@@ -11,28 +11,43 @@ import {
 } from "../../services/charts-api";
 
 export const Charts = () => {
-    const { selectedFilters, filteredData } = useFilters();
+    const { selectedFilters } = useFilters();
     const [chartsData, setChartsData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const url = import.meta.env.VITE_URL; // можно использовать authContext
-    const userId = import.meta.env.VITE_USERID; // можно использовать authContext
-    const user = import.meta.env.VITE_USER; // можно использовать authContext
-    const password = import.meta.env.VITE_PASSWORD; // можно использовать authContext
+    const url = import.meta.env.VITE_URL;
+    const userId = import.meta.env.VITE_USERID;
+    const user = import.meta.env.VITE_USER;
+    const password = import.meta.env.VITE_PASSWORD;
 
-    const authData = { url, user, password, userId };
+    // Используем useMemo для создания стабильного объекта authData
+    const authData = useMemo(() => ({ 
+        url, 
+        user, 
+        password, 
+        userId 
+    }), [url, userId, user, password]);
 
     useEffect(() => {
+        // Проверяем, что даты установлены, чтобы избежать лишних запросов
+        if (!selectedFilters.StartDate || !selectedFilters.EndDate) {
+            console.log('Даты не установлены, запрос пропущен');
+            setIsLoading(false);
+            return;
+        }
+        
+        // Добавляем флаг для предотвращения утечек памяти
+        let isMounted = true;
+
         const loadChartData = async () => {
-            setIsLoading(true);
-            setError(null);
+            if (isMounted) setIsLoading(true);
             
             try {
                 const apiFilters = {
-                    startDate: selectedFilters.startDate, // Подставьте реальную логику для дат
-                    endDate: selectedFilters.endDate,   // Подставьте реальную логику для дат
-                    groupBy: 'MONTH',
+                    startDate: selectedFilters.StartDate,
+                    endDate: selectedFilters.EndDate,
+                    groupBy: 'DAY',
                     City: selectedFilters.City,
                     AgencyId: selectedFilters.Agency,
                     ClusterId: selectedFilters.Cluster,
@@ -42,10 +57,9 @@ export const Charts = () => {
                     linegroup: selectedFilters.linegroup
                 };
                 
-                // Выводим логи для отладки
-                console.log('Отправка запросов с параметрами:', apiFilters);
+                console.log('Запрос данных с параметрами:', apiFilters);
                 
-                // Выполняем запросы индивидуально с обработкой ошибок
+                // Выполняем запросы к API
                 const results = await Promise.allSettled([
                     fetchPlanVsPerformance(apiFilters, authData),
                     fetchPerformancePercentage(apiFilters, authData),
@@ -61,78 +75,76 @@ export const Charts = () => {
                 const linePerformanceData = results[3].status === 'fulfilled' ? results[3].value : null;
                 const plannedChangesData = results[4].status === 'fulfilled' ? results[4].value : null;
                 
-                // Добавим отладочные логи для трансформации
-                console.log('Полученные данные из API:');
+                console.log('Получены данные от API:');
                 console.log('planVsPerformanceData:', planVsPerformanceData);
                 console.log('performancePercentageData:', performancePercentageData);
                 console.log('plannedTripsData:', plannedTripsData);
                 console.log('linePerformanceData:', linePerformanceData);
                 console.log('plannedChangesData:', plannedChangesData);
                 
-                // Преобразуем имеющиеся данные в графики
-                const charts = transformDataToCharts(
-                    planVsPerformanceData, 
-                    performancePercentageData, 
-                    plannedTripsData, 
-                    linePerformanceData, 
-                    plannedChangesData
-                );
-                
-                // Проверяем результат трансформации
-                console.log('Преобразованные графики:', charts);
-                
-                // Проверяем, есть ли хоть какие-то полученные данные
-                if (charts.length === 0) {
-                    // Если все API вернули ошибки, используем дефолтные графики
-                    console.warn("Все API-запросы завершились ошибкой, используем дефолтные графики");
-                    setChartsData([]); // Это активирует условие для отображения defaultCharts
-                } else {
-                    setChartsData(charts);
-                }
-                
-                // Записываем ошибки в консоль для отладки
-                results.forEach((result, index) => {
-                    if (result.status === 'rejected') {
-                        const endpoints = [
-                            'TripsPlannedVSPerformed', 
-                            'TripsPlannedVSPerformedPercentage', 
-                            'TripsPlanned', 
-                            'PerformanceDetailsForLine', 
-                            'TripsPlannedChanges'
-                        ];
-                        console.error(`Ошибка при запросе ${endpoints[index]}:`, result.reason);
+                if (isMounted) {
+                    // Преобразуем имеющиеся данные в графики
+                    const charts = transformDataToCharts(
+                        planVsPerformanceData, 
+                        performancePercentageData, 
+                        plannedTripsData, 
+                        linePerformanceData, 
+                        plannedChangesData
+                    );
+                    
+                    if (charts.length === 0) {
+                        console.warn("API не вернул данных для графиков, используем дефолтные");
+                        setChartsData([]);
+                    } else {
+                        console.log(`Графики успешно сформированы: ${charts.length} шт.`);
+                        setChartsData(charts);
                     }
-                });
+                    
+                    // Записываем ошибки в консоль для отладки
+                    results.forEach((result, index) => {
+                        if (result.status === 'rejected') {
+                            const endpoints = [
+                                'TripsPlannedVSPerformed', 
+                                'TripsPlannedVSPerformedPercentage', 
+                                'TripsPlanned', 
+                                'PerformanceDetailsForLine', 
+                                'TripsPlannedChanges'
+                            ];
+                            console.error(`Ошибка при запросе ${endpoints[index]}:`, result.reason);
+                        }
+                    });
+                }
             } catch (err) {
                 console.error("Ошибка при загрузке данных для графиков:", err);
-                setError(err.message || "Ошибка при загрузке данных");
+                if (isMounted) {
+                    setError(err.message || "Ошибка при загрузке данных");
+                }
             } finally {
-                setIsLoading(false);
+                if (isMounted) {
+                    setIsLoading(false);
+                }
             }
         };
         
         loadChartData();
-    }, [selectedFilters]);
-
-    // Вспомогательная функция для форматирования месяцев
-    const formatMonth = (monthStr) => {
-        const monthNames = {
-            '01': 'ינו',
-            '02': 'פבר',
-            '03': 'מרץ',
-            '04': 'אפר',
-            '05': 'מאי',
-            '06': 'יוני',
-            '07': 'יולי',
-            '08': 'אוג',
-            '09': 'ספט',
-            '10': 'אוק',
-            '11': 'נוב',
-            '12': 'דצמ'
-        };
         
-        const [year, month] = monthStr.split('-');
-        return `${monthNames[month]} ${year}`;
+        // Функция очистки
+        return () => {
+            isMounted = false;
+        };
+    }, [selectedFilters, authData]); // теперь authData стабилен и не вызывает перерендер
+
+    // Форматирование даты для отображения по дням
+    const formatDay = (dayStr) => {
+        if (!dayStr) return 'N/A';
+        
+        try {
+            const [year, month, day] = dayStr.split('-');
+            return `${day}.${month}`;
+        } catch (e) {
+            console.error('Ошибка при форматировании даты:', e);
+            return dayStr;
+        }
     };
 
     // Функция для преобразования данных API в формат для графиков
@@ -152,11 +164,14 @@ export const Charts = () => {
                 data: [
                     ["חודש", "בוצע", "מתוכנן"],
                     // Преобразуем данные из planVsPerformanceData
-                    ...planVsPerformanceData.map(item => [
-                        item.Month || item.Date || 'חודש', // Заголовок
-                        item.ActualTrips || 0,             // Выполнено 
-                        item.PlannedTrips || 0            // План
-                    ])
+                    ...planVsPerformanceData.map(item => {
+                        const monthDisplay = formatDay(item.GroupBy || item.Month || item.Date);
+                        return [
+                            monthDisplay || 'חודש',      // Используем GroupBy для даты
+                            item.Perfomerd || 0,          // Выполнено (fix: use Perfomerd instead of ActualTrips)
+                            item.Planned || 0            // План (fix: use Planned instead of PlannedTrips)
+                        ];
+                    })
                 ],
                 options: {
                     chartArea: { width: "80%", height: "60%" },
@@ -192,10 +207,13 @@ export const Charts = () => {
                 data: [
                     ["חודש", "אחוז ביצוע"],
                     // Преобразуем данные из performancePercentageData
-                    ...performancePercentageData.map(item => [
-                        item.Month || item.Date || 'חודש',   // Заголовок
-                        item.PerformancePercentage || 0      // Процент выполнения
-                    ])
+                    ...performancePercentageData.map(item => {
+                        const monthDisplay = formatDay(item.GroupBy || item.Month || item.Date);
+                        return [
+                            monthDisplay || 'חודש',          // Используем GroupBy для даты
+                            item.PerformancePercentage || 0   // Процент выполнения
+                        ];
+                    })
                 ],
                 options: {
                     chartArea: { width: "80%", height: "60%" },
@@ -256,7 +274,7 @@ export const Charts = () => {
             ];
             
             Object.entries(monthlyData).forEach(([month, data]) => {
-                const monthDisplay = formatMonth(month);
+                const monthDisplay = formatDay(month);
                 chartData.push([
                     monthDisplay,
                     data.Times || 0,
@@ -312,7 +330,7 @@ export const Charts = () => {
             
             // Преобразуем данные в формат для графика
             plannedTripsData.forEach(item => {
-                const monthDisplay = formatMonth(item.GroupBy);
+                const monthDisplay = formatDay(item.GroupBy);
                 chartData.push([
                     monthDisplay,
                     item.City || 0,     // городские (עירוני)

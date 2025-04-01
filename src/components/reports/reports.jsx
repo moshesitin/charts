@@ -32,9 +32,10 @@ export const Reports = () => {
         
         try {
             const apiFilters = {
-                startDate: '2023-01-01',
-                endDate: '2023-12-31',
-                ...selectedFilters
+                ...selectedFilters,
+                // Use the dates from selectedFilters directly
+                startDate: selectedFilters.StartDate,
+                endDate: selectedFilters.EndDate
             };
             
             const data = await fetchLinePerformanceDetails(apiFilters, authData);

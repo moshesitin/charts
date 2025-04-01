@@ -1,10 +1,17 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
 import axios from 'axios';
 
-// Начальные даты для фильтров
+// Function to get date X days before today
+const getDateBefore = (days) => {
+    const date = new Date();
+    date.setDate(date.getDate() - days);
+    return date;
+};
+
+// Current date for end date
 const currentDate = new Date();
-const threeMonthsAgo = new Date();
-threeMonthsAgo.setMonth(currentDate.getMonth() - 3);
+// 7 days before today for start date (to get 8 days total including today)
+const weekAgo = getDateBefore(7);
 
 export const FiltersContext = createContext();
 
@@ -34,7 +41,7 @@ export const FiltersProvider = ({ children }) => {
         RouteNumber: '',
         LineType: '',
         linegroup: '',
-        StartDate: threeMonthsAgo.toISOString().split('T')[0],
+        StartDate: weekAgo.toISOString().split('T')[0],
         EndDate: currentDate.toISOString().split('T')[0]
     });
     
@@ -132,8 +139,22 @@ export const FiltersProvider = ({ children }) => {
     }, [filterOptions, loadFilterOptions]);
     
     // Обработчик изменения фильтра
-    const handleFilterChange = useCallback((e) => {
-        const { id, value } = e.target;
+    const handleFilterChange = useCallback((idOrEvent, directValue) => {
+        let id, value;
+        
+        // Проверяем, что передано: событие или прямые значения
+        if (directValue !== undefined) {
+            // Если передано два параметра, то это прямые значения (id, value)
+            id = idOrEvent;
+            value = directValue;
+        } else if (idOrEvent && idOrEvent.target) {
+            // Если передан объект события с target, извлекаем значения из него
+            id = idOrEvent.target.id;
+            value = idOrEvent.target.value;
+        } else {
+            console.error('Некорректные параметры для handleFilterChange:', idOrEvent, directValue);
+            return;
+        }
         
         // Определяем, какие поля должны быть числовыми
         const numericFields = ['Agency', 'Cluster', 'linegroup'];
@@ -151,55 +172,36 @@ export const FiltersProvider = ({ children }) => {
         // Определяем зависимые фильтры для сброса
         let filtersToReset = {};
         
-        switch(id) {
-            case 'Agency':
-                filtersToReset = { 
-                    Cluster: '', SubCluster: '', 
-                    City: '', RouteNumber: '', linegroup: '' 
-                };
-                break;
-            case 'Cluster':
-                filtersToReset = { 
-                    SubCluster: '', City: '', 
-                    RouteNumber: '', linegroup: '' 
-                };
-                break;
-            case 'SubCluster':
-                filtersToReset = { 
-                    City: '', RouteNumber: '', linegroup: '' 
-                };
-                break;
-            case 'City':
-                filtersToReset = { 
-                    RouteNumber: '', linegroup: '' 
-                };
-                break;
-            case 'LineType':
-                filtersToReset = { 
-                    RouteNumber: '', linegroup: '' 
-                };
-                break;
-            default:
-                filtersToReset = {};
-        }
-        
-        // Сбрасываем зависимые фильтры
-        if (Object.keys(filtersToReset).length) {
-            setSelectedFilters(prev => ({
-                ...prev,
-                ...filtersToReset
-            }));
+        // Сбрасываем зависимые фильтры только если это не даты
+        if (id !== 'StartDate' && id !== 'EndDate') {
+            switch(id) {
+                case 'Agency':
+                    filtersToReset = { 
+                        Cluster: '', SubCluster: '', 
+                        City: '', RouteNumber: '', linegroup: '' 
+                    };
+                    break;
+                // ... остальные case
+            }
             
-            // Сбрасываем кэшированные опции для зависимых фильтров
-            Object.keys(filtersToReset).forEach(filterKey => {
-                const apiFilterType = filterKey === 'RouteNumber' ? 'LineID' : 
-                                      filterKey === 'City' ? 'Cities' : filterKey;
-                
-                setFilterOptions(prev => ({
+            // Сбрасываем зависимые фильтры
+            if (Object.keys(filtersToReset).length) {
+                setSelectedFilters(prev => ({
                     ...prev,
-                    [apiFilterType]: undefined
+                    ...filtersToReset
                 }));
-            });
+                
+                // Сбрасываем кэшированные опции для зависимых фильтров
+                Object.keys(filtersToReset).forEach(filterKey => {
+                    const apiFilterType = filterKey === 'RouteNumber' ? 'LineID' : 
+                                        filterKey === 'City' ? 'Cities' : filterKey;
+                    
+                    setFilterOptions(prev => ({
+                        ...prev,
+                        [apiFilterType]: undefined
+                    }));
+                });
+            }
         }
     }, []);
     
