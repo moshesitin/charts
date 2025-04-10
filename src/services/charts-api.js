@@ -76,24 +76,24 @@ export const fetchTripsPerformanceDetails = async (filters, authData) => {
 };
 
 // Current implementation using linePerformanceData
-linePerformanceData.forEach(item => {
-    if (item.Delay <= -3) delayCategories["הקדמה 3 דקות ומעלה"]++;
-    else if (item.Delay < 0) delayCategories["הקדמה עד 2 דקות"]++;
-    else if (item.Delay <= 5) delayCategories["עד 5 דקות"]++;
-    else if (item.Delay <= 10) delayCategories["6-10 דקות"]++;
-    else if (item.Delay <= 20) delayCategories["11-20 דקות"]++;
-    else if (item.Delay > 20) delayCategories["מעל 20 דקות"]++;
-    else if (item.Status === "NotPerformed") delayCategories["לא בוצע"]++;
-});
+// linePerformanceData.forEach(item => {
+//     if (item.Delay <= -3) delayCategories["הקדמה 3 דקות ומעלה"]++;
+//     else if (item.Delay < 0) delayCategories["הקדמה עד 2 דקות"]++;
+//     else if (item.Delay <= 5) delayCategories["עד 5 דקות"]++;
+//     else if (item.Delay <= 10) delayCategories["6-10 דקות"]++;
+//     else if (item.Delay <= 20) delayCategories["11-20 דקות"]++;
+//     else if (item.Delay > 20) delayCategories["מעל 20 דקות"]++;
+//     else if (item.Status === "NotPerformed") delayCategories["לא בוצע"]++;
+// });
 
-const results = await Promise.allSettled([
-    fetchPlanVsPerformance(apiFilters, authData),
-    fetchPerformancePercentage(apiFilters, authData),
-    fetchPlannedTrips(apiFilters, authData),
-    fetchLinePerformanceDetails(apiFilters, authData),
-    fetchPlannedChanges(apiFilters, authData),
-    fetchTripsPerformanceDetails(apiFilters, authData)  // Add this new call
-]);
+// const results = await Promise.allSettled([
+//     fetchPlanVsPerformance(apiFilters, authData),
+//     fetchPerformancePercentage(apiFilters, authData),
+//     fetchPlannedTrips(apiFilters, authData),
+//     fetchLinePerformanceDetails(apiFilters, authData),
+//     fetchPlannedChanges(apiFilters, authData),
+//     fetchTripsPerformanceDetails(apiFilters, authData)  // Add this new call
+// ]);
 
 // Add to your extracted results
-const tripsPerformanceData = results[5].status === 'fulfilled' ? results[5].value : null;
+// const tripsPerformanceData = results[5].status === 'fulfilled' ? results[5].value : null;
